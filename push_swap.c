@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:12:03 by alemarti          #+#    #+#             */
-/*   Updated: 2021/10/22 19:06:01 by alemarti         ###   ########.fr       */
+/*   Updated: 2021/10/22 19:15:08 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(void)
 	char		**commands;
 	//t_list_node	*swap;
 
-	commands = ft_split("sa\npb\npb\npb\nrr\nrrr\nsa\npa\npa\npa", '\n');
+	commands = ft_split("sa\npb\npb\npb\nrr\nrrr\nsa\npa\npa\npa\nl", '\n');
 
 	push_swap = init_push_swap();
  	push_node(new_node(8), push_swap->stack_a);
@@ -35,7 +35,8 @@ int	main(void)
 	while (*commands)
 	{
 		printf("\t%s\n", *commands);
-		exec_command(push_swap, *commands);
+		if (exec_command(push_swap, *commands) != 0)
+			return (1);
 		print_list(push_swap->stack_a);
 		print_list(push_swap->stack_b);
 		
