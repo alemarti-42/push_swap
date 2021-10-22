@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alemarti <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/18 11:43:48 by alemarti          #+#    #+#              #
-#    Updated: 2021/09/27 15:37:53 by alemarti         ###   ########.fr        #
+#    Updated: 2021/10/22 19:02:52 by alemarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,19 +45,9 @@ SRCS	= ft_memset.c	 	\
 		  ft_putstr_fd.c	\
 		  ft_putendl_fd.c	\
 		  ft_putnbr_fd.c	
-SRCS_B	= ft_lstnew.c		\
-		  ft_lstadd_front.c	\
-		  ft_lstsize.c		\
-		  ft_lstlast.c		\
-		  ft_lstadd_back.c	\
-		  ft_lstdelone.c	\
-		  ft_lstclear.c		\
-		  ft_lstiter.c		\
-		  ft_lstmap.c
 
 
 OBJS	= ${SRCS:.c=.o}
-OBJS_B	= ${SRCS_B:.c=.o}
 NAME	= libft.a
 CC		= gcc
 RM		= rm -f
@@ -65,11 +55,11 @@ CFLAGS	= -Wall -Werror -Wextra
 
 all:		${NAME}
 	
-${NAME}:	${OBJS} ${OBJS_B}
-			ar rc	${NAME} ${OBJS} ${OBJS_B}
+${NAME}:	${OBJS}
+			ar rc	${NAME} ${OBJS}
 
 clean:	
-			@${RM} ${OBJS} ${OBJS_B}
+			@${RM} ${OBJS}
 
 fclean:		clean
 			@${RM} ${NAME}
