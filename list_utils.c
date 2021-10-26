@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:28:37 by alemarti          #+#    #+#             */
-/*   Updated: 2021/10/22 17:49:59 by alemarti         ###   ########.fr       */
+/*   Updated: 2021/10/26 15:42:38 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,16 @@ t_list_node	*pop_node(t_list *list)
 
 t_list	*rev_rotate(t_list *list)
 {
-	list->first = list->first->prev;
+	
+	if (list->first)
+		list->first = list->first->prev;
 	return (list);
 }
 
 t_list	*rotate(t_list *list)
 {
-	list->first = list->first->next;
+	if (list->first)
+		list->first = list->first->next;
 	return (list);
 }
 
@@ -89,10 +92,9 @@ void print_list(t_list *list)
 {
 	t_list_node *reader;
 
-	printf("\t\tLIST\n");
 	if (list->first == NULL)
 	{
-		printf("\t\t(empty)\n");
+		printf("\t(empty)\n");
 		return ;
 	}
 	
@@ -101,104 +103,37 @@ void print_list(t_list *list)
 	printf("\t\t%d\n", reader->value); */
 	while (reader->next != list->first)
 	{
-		printf("\t\t%d\n", reader->value);
+		printf("\t%d", reader->value);
 		reader = reader->next;
 	}
-	printf("\t\t%d\n", reader->value);
+	printf("\t%d\n", reader->value);
 	return ;
 }
-/* t_list	*new_list(void)
+
+void print_stacks(t_push_swap *push_swap)
 {
+	printf("[A]:\t");
+	print_list(push_swap->stack_a);
+	printf("[B]:\t");
+	print_list(push_swap->stack_b);
+}
+
+t_list	*string_tolist(char* str)
+{
+	char	**chopped;
 	t_list	*res;
 
-	res = malloc(sizeof(t_list));
-	res->first = NULL;
+	res = new_list();
+	chopped = NULL;
+	chopped = ft_split(str, ' ');
+	printf("[TEST]STRING: %s\n", str);
+	while(*chopped)
+	{
+		printf("[TEST]ATOI: %d\n", ft_atoi(*chopped));
+
+		queue_node(new_node(ft_atoi(*chopped)), res);
+		free(*chopped);
+		chopped++;
+	}
 	return (res);
 }
-
-t_list_node	*new_node(int element)
-{
-	t_list_node	*node;
-
-	node = malloc(sizeof(t_list_node));
-	node->value = element;
-	node->prev = NULL;
-	node->next = NULL;
-	return (node);
-}
-
-void push(t_list_node *node, t_list *list)
-{
-	if (!list->first)
-	{
-		list->first = node;
-		node->next = node;
-		return ;
-	} */
-	
-	
-
-/* void	free_list_nodes(t_list *list)
-{
-	t_list_node	*swap_head;
-	t_list_node	*swap_next;
-
-	if (!list)
-		return ;
-	swap_head = list->first;
-	while (swap_head)
-	{
-		swap_next = swap_head->next;
-		free(swap_head);
-		swap_head = swap_next;
-	}
-	list->first = NULL;
-	list->last = NULL;
-}
-
-t_list_node	*append_element(int element, t_list *list)
-{
-	t_list_node	*new_node;
-
-	new_node = malloc(sizeof(t_list_node));
-	new_node->value = element;
-	new_node->next = NULL;
-	if (!list->first)
-	{
-		list->first = new_node;
-		list->last = new_node;
-		return (new_node);
-	}
-	list->last->next = new_node;
-	list->last = new_node;
-	return (new_node);
-}
-
-void	push(t_list_node *list_node, t_list *list)
-{
-	list_node->next = list->first;
-	list->first = list_node;
-}
-
-
-t_list_node	*pop(t_list *list)
-{
-	t_list_node	*swap_head;
-
-	if (!list->first)
-		return (NULL);
-	swap_head = list->first;
-	list->first = list->first->next;
-	swap_head->next = NULL;
-	
-	return (swap_head);
-}
-
-void	rotate(t_list *list)
-{
-	list->last->next = list->first;
-	list->last = list->last->next;
-	list->first = list->first->next;
-	list->last->next = NULL;
-}
- */

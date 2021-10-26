@@ -6,12 +6,12 @@
 #    By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 15:10:14 by alemarti          #+#    #+#              #
-#    Updated: 2021/10/22 19:09:26 by alemarti         ###   ########.fr        #
+#    Updated: 2021/10/26 16:10:47 by alemarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	push_swap.c				\
-				list_utils.c			\
+SRCS		=	push_swap.c					\
+				list_utils.c				\
 				push_swap_interpreter.c	
 
 
@@ -49,7 +49,7 @@ re:			fclean all
 
 test:		test.out
 test.out:	${OBJS}
-			${CC} ${CFLAGS} ${OBJS} ${LIBFT} -o test_push_swap.out 
+			${CC} ${CFLAGS} ${DBFLAGS} ${OBJS} ${LIBFT} -o test.out 
 
 retest:		fclean test
 

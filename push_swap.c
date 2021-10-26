@@ -6,98 +6,52 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:12:03 by alemarti          #+#    #+#             */
-/*   Updated: 2021/10/22 19:15:08 by alemarti         ###   ########.fr       */
+/*   Updated: 2021/10/26 15:59:02 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 
-int	main(void)
+int	exec_phrase(t_push_swap *push_swap, char *phrase)
 {
-	t_push_swap *push_swap;
-	char		**commands;
-	//t_list_node	*swap;
-
-	commands = ft_split("sa\npb\npb\npb\nrr\nrrr\nsa\npa\npa\npa\nl", '\n');
-
-	push_swap = init_push_swap();
- 	push_node(new_node(8), push_swap->stack_a);
-	push_node(new_node(5), push_swap->stack_a);
-	push_node(new_node(6), push_swap->stack_a);
-	push_node(new_node(3), push_swap->stack_a);
-	push_node(new_node(1), push_swap->stack_a);
-	push_node(new_node(2), push_swap->stack_a);
-
-	print_list(push_swap->stack_a);
-	print_list(push_swap->stack_b);
+	int 	count;
+	char	**commands;
 	
+	count = 0;
+	commands = ft_split(phrase, ' ');
 	while (*commands)
 	{
-		printf("\t%s\n", *commands);
-		if (exec_command(push_swap, *commands) != 0)
-			return (1);
-		print_list(push_swap->stack_a);
-		print_list(push_swap->stack_b);
+		printf("\tCMD: %d  \t--%s--\n", ++count, *commands);
+		if (exec_command(push_swap, *commands) == -1)
+			return (-1);
+		print_stacks(push_swap);
 		
 		commands++;
 	}
-	/* exec_command(push_swap, "sa");
-	exec_command(push_swap, "pb");
-	exec_command(push_swap, "pb");
-	exec_command(push_swap, "pb");
-	exec_command(push_swap, "rr");
-	exec_command(push_swap, "rrr");
-	exec_command(push_swap, "sa");
-	exec_command(push_swap, "pa");
-	exec_command(push_swap, "pa");
-	exec_command(push_swap, "pa"); */
+	return (0);
+}
+
+int	main(void)
+{
 
 
+	t_push_swap *push_swap;
+	char		*commands;
 
-	
-/*	
-	queue_node(new_node(1), stack_b);
-	queue_node(new_node(2), stack_b);
-	queue_node(new_node(3), stack_b);
-	queue_node(new_node(4), stack_b);
-	queue_node(new_node(5), stack_b);
-	queue_node(new_node(6), stack_b);
+	push_swap = init_push_swap();
+	//commands = "pb pb ra ra ra ra ra pb ra pb ra  pb pb ra pb ra ra pb  ra  pa pa rb rb pa rrb rrb pa rra rb pa pa rra rra pa pa";
+	//push_swap->stack_a = string_tolist("1 2 3 4 5 6");
 
-	push_node(pop_node(stack_a), stack_b);
-	print_list(stack_a);
-	print_list(stack_b); */
+	//commands = "pb pb ra pa pa ra ra sa ra ra";
+	//commands = "pb ra pb rra pb ra pa sb pa pa";
+	//push_swap->stack_a = string_tolist("2 3 1 5 4");
 
-	/* push_node(new_node(1), lista);
-	push_node(new_node(2), lista);
-	push_node(new_node(3), lista);
-	push_node(new_node(4), lista);
-	push_node(new_node(5), lista);
-	queue_node(new_node(6), lista);
-	print_list(lista);
-	printf("POP:\t%d\n", pop_node(lista)->value);
-	printf("POP:\t%d\n", pop_node(lista)->value);
-	printf("POP:\t%d\n", pop_node(lista)->value);
-	print_list(lista);
-	rotate(lista);
-	print_list(lista);
-	printf("POP:\t%d\n", pop_node(lista)->value);
-	printf("POP:\t%d\n", pop_node(lista)->value);
-	printf("POP:\t%d\n", pop_node(lista)->value);
-	printf("POP:\t%p\n", pop_node(lista));
-	push_node(new_node(1), lista);
-	print_list(lista);
-	printf("POP:\t%p\n", pop_node(lista));
-	printf("POP:\t%p\n", pop_node(lista));
-	printf("POP:\t%p\n", pop_node(lista));
-	print_list(lista); */
+	commands = "pb pb pb ra ra ra pb ra pb ra  ra pb ra pb ra ra sa rra  sb pa pa pa rb rb pa sa sb pa pa pa";
+	push_swap->stack_a = string_tolist("2 5 1 8 7 10 3 6 4 9");
 
-
-	/* printf("POP:\t%d\n", pop_node(lista)->value);
-	printf("POP:\t%d\n", pop_node(lista)->value);
-	printf("POP:\t%d\n", pop_node(lista)->value); */
-
-
+	print_stacks(push_swap);
+	exec_phrase(push_swap, commands);
 
 	return (0);
 }

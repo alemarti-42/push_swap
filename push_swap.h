@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:11:59 by alemarti          #+#    #+#             */
-/*   Updated: 2021/10/22 18:58:17 by alemarti         ###   ########.fr       */
+/*   Updated: 2021/10/26 15:19:00 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ typedef struct s_list_node
 	struct s_list_node	*next;
 }					t_list_node;
 
+//push_swap.c
+int	exec_phrase(t_push_swap *push_swap, char *phrase);
+
 //list_utils.c
 t_list		*new_list(void);
 t_list_node	*new_node(int element);
@@ -51,6 +54,8 @@ t_list		*rotate(t_list *list);
 t_list		*rev_rotate(t_list *list);
 void		queue_node(t_list_node *new_node, t_list *list);
 void 		print_list(t_list *list);
+void		 print_stacks(t_push_swap *push_swap);
+t_list		*string_tolist(char* str);
 
 //push_swap_interpreter.c
 t_push_swap	*init_push_swap(void);

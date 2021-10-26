@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 17:49:23 by alemarti          #+#    #+#             */
-/*   Updated: 2021/10/22 19:19:21 by alemarti         ###   ########.fr       */
+/*   Updated: 2021/10/26 14:07:02 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	exec_command(t_push_swap *push_swap, char *command)
 			return (exec_sb(push_swap));
 		if (command[1] == 's')
 			return (exec_ss(push_swap));
-		return (-1)
+		return (-1);
 	}
 	if (command[0] == 'p')
 	{
