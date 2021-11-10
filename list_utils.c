@@ -6,18 +6,28 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:28:37 by alemarti          #+#    #+#             */
-/*   Updated: 2021/10/26 15:42:38 by alemarti         ###   ########.fr       */
+/*   Updated: 2021/11/10 15:37:37 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+// FOR TESTING
+void print_stacks(t_push_swap *push_swap)
+{
+	printf("[A]size:%d:\t", push_swap->stack_a->size);
+	print_list(push_swap->stack_a);
+	printf("[B]size:%d:\t", push_swap->stack_b->size);
+	print_list(push_swap->stack_b);
+}
+//
 
 t_list	*new_list(void)
 {
 	t_list	*list;
 
 	list = malloc(sizeof(t_list));
-	list->count_elements = 0;
+	list->size = 0;
 	list->first = NULL;
 	return (list);
 }
@@ -35,6 +45,7 @@ t_list_node	*new_node(int element)
 
 void	push_node(t_list_node *new_node, t_list *list)
 {
+	list->size++;
 	if (list->first == NULL)
 	{
 		new_node->next = new_node;
@@ -53,6 +64,7 @@ t_list_node	*pop_node(t_list *list)
 {
 	t_list_node	*node;
 
+	list->size -= list->size > 0;
 	if (list->first == NULL)
 		return (NULL);
 	node = list->first;
@@ -110,13 +122,6 @@ void print_list(t_list *list)
 	return ;
 }
 
-void print_stacks(t_push_swap *push_swap)
-{
-	printf("[A]:\t");
-	print_list(push_swap->stack_a);
-	printf("[B]:\t");
-	print_list(push_swap->stack_b);
-}
 
 t_list	*string_tolist(char* str)
 {
@@ -136,4 +141,22 @@ t_list	*string_tolist(char* str)
 		chopped++;
 	}
 	return (res);
+}
+
+int		stack_is_ordered(t_list *stack)
+{
+	t_list_node	*sentinel;
+
+	if (!stack->first)
+		return (-1);
+	sentinel = stack->first;
+	while (sentinel->next && sentinel->next != stack->first)
+	{
+		if (sentinel->next->value < sentinel->value)
+		{
+			return (-1);
+		}
+		sentinel = sentinel->next;
+	}
+	return (0);
 }

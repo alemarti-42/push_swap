@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:11:59 by alemarti          #+#    #+#             */
-/*   Updated: 2021/10/26 15:19:00 by alemarti         ###   ########.fr       */
+/*   Updated: 2021/11/10 15:36:57 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 typedef struct s_push_swap
 {
+	char			*commands;
 	struct s_list	*stack_a;
 	struct s_list	*stack_b;
 }					t_push_swap;
@@ -30,7 +31,7 @@ typedef struct s_push_swap
 
 typedef struct s_list
 {
-	int					count_elements;
+	int					size;
 	struct s_list_node	*first;
 	//struct s_list_node	*last;
 }					t_list;
@@ -46,6 +47,8 @@ typedef struct s_list_node
 int	exec_phrase(t_push_swap *push_swap, char *phrase);
 
 //list_utils.c
+void		 print_stacks(t_push_swap *push_swap);
+
 t_list		*new_list(void);
 t_list_node	*new_node(int element);
 void		push_node(t_list_node *new_node, t_list *list);
@@ -54,15 +57,16 @@ t_list		*rotate(t_list *list);
 t_list		*rev_rotate(t_list *list);
 void		queue_node(t_list_node *new_node, t_list *list);
 void 		print_list(t_list *list);
-void		 print_stacks(t_push_swap *push_swap);
 t_list		*string_tolist(char* str);
+int			stack_is_ordered(t_list *stack);
 
 //push_swap_interpreter.c
+
+
+void	add_command(t_push_swap *push_swap, char *cmd);
+
 t_push_swap	*init_push_swap(void);
-
 int	exec_command(t_push_swap *push_swap, char *command);
-
-
 int	exec_swap(t_list *stack);
 int	exec_sa(t_push_swap *push_swap);
 int	exec_sb(t_push_swap *push_swap);
@@ -78,6 +82,12 @@ int	exec_rr(t_push_swap *push_swap);
 int	exec_rra(t_push_swap *push_swap);
 int	exec_rrb(t_push_swap *push_swap);
 int	exec_rrr(t_push_swap *push_swap);
+
+//small_stack_utils.c
+t_push_swap	*sort_size_two(t_push_swap* push_swap);
+t_push_swap	*sort_size_three(t_push_swap* push_swap);
+
+
 
 
 /* t_list_node	*append_element(int element, t_list *list);

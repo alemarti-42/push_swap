@@ -6,13 +6,14 @@
 #    By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 15:10:14 by alemarti          #+#    #+#              #
-#    Updated: 2021/10/26 16:10:47 by alemarti         ###   ########.fr        #
+#    Updated: 2021/11/10 15:13:35 by alemarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		=	push_swap.c					\
 				list_utils.c				\
-				push_swap_interpreter.c	
+				push_swap_interpreter.c		\
+				small_stack_utils.c
 
 
 OBJS		= ${SRCS:.c=.o}
@@ -39,7 +40,7 @@ ${LIBFT}:
 
 clean:
 			@${RM} ${OBJS}
-			@make -C ./libft/ fclean
+			@make -C ./libft/ clean
 
 
 fclean:		clean

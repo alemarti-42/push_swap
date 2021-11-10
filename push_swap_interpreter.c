@@ -6,17 +6,29 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 17:49:23 by alemarti          #+#    #+#             */
-/*   Updated: 2021/10/26 14:07:02 by alemarti         ###   ########.fr       */
+/*   Updated: 2021/11/10 14:50:04 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	add_command(t_push_swap *push_swap, char *cmd)
+{
+	char	*swap;
+
+	swap = ft_strjoin(push_swap->commands, cmd);
+	free(push_swap->commands);
+	push_swap->commands = swap;
+	return ;
+}
 
 t_push_swap	*init_push_swap(void)
 {
 	t_push_swap	*new_push_swap;
 
 	new_push_swap = malloc(sizeof(t_push_swap));
+	new_push_swap->commands = malloc (1);
+	*new_push_swap->commands = 0;
 	new_push_swap->stack_a = new_list();
 	new_push_swap->stack_b = new_list();
 	return (new_push_swap);
@@ -77,18 +89,26 @@ int	exec_swap(t_list *stack)
 
 int	exec_sa(t_push_swap *push_swap)
 {
-	return (exec_swap(push_swap->stack_a));
+	if (exec_swap(push_swap->stack_a))
+		return (-1);
+	add_command(push_swap, "sa");
+	return (0);
 }
 
 int	exec_sb(t_push_swap *push_swap)
 {
-	return (exec_swap(push_swap->stack_b));
+	if (exec_swap(push_swap->stack_b) == -1)
+		return (-1);
+	add_command(push_swap, "sb");
+	return (0);
 }
 
 int	exec_ss(t_push_swap *push_swap)
 {
-	if (exec_sa(push_swap) != 0 || exec_sb(push_swap) != 0)
+	
+	if (exec_sa(push_swap) == -1 || exec_sb(push_swap) == -1)
 		return (-1);
+	//push_swap->commands = ft_strjoin(push_swap->commands, "ss");
 	return (0);
 }
 
@@ -105,25 +125,35 @@ int	exec_push(t_list *stack_src, t_list *stack_dst)
 
 int	exec_pa(t_push_swap *push_swap)
 {
-	return (exec_push(push_swap->stack_b, push_swap->stack_a));
+	if (exec_push(push_swap->stack_b, push_swap->stack_a) == -1)
+		return (-1);
+	add_command(push_swap, "pa");
+	return (0);
 }
 
 int	exec_pb(t_push_swap *push_swap)
 {
-	return (exec_push(push_swap->stack_a, push_swap->stack_b));
+	if (exec_push(push_swap->stack_a, push_swap->stack_b) == -1)
+		return (-1);
+	add_command(push_swap, "pb");
+	return (0);
 }
 
 int	exec_ra(t_push_swap *push_swap)
 {
+	
 	if (rotate(push_swap->stack_a) == NULL)
 		return (-1);
+	add_command(push_swap, "ra");
 	return (0);
 }
 
 int	exec_rb(t_push_swap *push_swap)
 {
+	
 	if (rotate(push_swap->stack_b) == NULL)
 		return (-1);
+	add_command(push_swap, "rb");
 	return (0);
 }
 
@@ -131,27 +161,34 @@ int	exec_rr(t_push_swap *push_swap)
 {
 	if (exec_ra(push_swap) != 0 || exec_rb(push_swap) != 0)
 		return (-1);
+	//push_swap->commands = ft_strjoin(push_swap->commands, "rr");
 	return (0);
 }
 
 int	exec_rra(t_push_swap *push_swap)
 {
+	
 	if (rev_rotate(push_swap->stack_a) == NULL)
 		return (-1);
+	add_command(push_swap, "rra");
 	return (0);
 }
 
 int	exec_rrb(t_push_swap *push_swap)
 {
+	
 	if (rev_rotate(push_swap->stack_b) == NULL)
 		return (-1);
+	add_command(push_swap, "rrb");
 	return (0);
 }
 
 int	exec_rrr(t_push_swap *push_swap)
 {
+	
 	if (exec_rra(push_swap) != 0 || exec_rrb(push_swap) != 0)
 		return (-1);
+	//push_swap->commands = ft_strjoin(push_swap->commands, "rrr");
 	return (0);
 }
 
