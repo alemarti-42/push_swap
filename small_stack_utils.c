@@ -14,11 +14,17 @@
 
 void	sort_size_two(t_push_swap* push_swap, t_list* stack)
 {
-	if (push_swap->stack_a->size != 2)
+	if (stack->size != 2)
 		return ;
 	
 	if (stack->first->value > stack->first->next->value)
-		exec_command(push_swap, "sa");
+	{
+		if (stack == push_swap->stack_a)
+			exec_command(push_swap, "sa");
+		if (stack == push_swap->stack_b)
+			exec_command(push_swap, "sb");
+		printf("\nSORT\n");
+	}
 	return ;
 }
 
@@ -53,7 +59,6 @@ void	sort_size_three(t_push_swap* push_swap, t_list* stack)
 		else if (stack->first->value > stack->first->next->value \
 			&& stack->first->value < stack->first->prev->value)
 			exec_command(push_swap, commands[0]);
-		
 	}
 
 	return ;
@@ -68,29 +73,44 @@ t_push_swap	*sort_size_six(t_push_swap* push_swap)
 		exec_command(push_swap, "pb");
 	}
 	sort_size_three(push_swap, push_swap->stack_a);
-	print_stacks(push_swap);
+	printf("\nBUG\n");
+	
 	if (push_swap->stack_b->size == 3)
+	{
 		sort_size_three(push_swap, push_swap->stack_b);
-	if (push_swap->stack_b->size == 2)
+		printf("\nBUG\n");
+	}
+	else if (push_swap->stack_b->size == 2)
+	{
 		sort_size_two(push_swap, push_swap->stack_b);
+		printf("\ngood\n");
+	}
 /* 	if (push_swap->stack_b->first->value < push_swap->stack_b->first->next->value)
 		exec_command(push_swap, "pa"); */
 	//print_stacks(push_swap);
 	merge_sorted_stacks(push_swap);
+	print_stacks(push_swap);
 	return (push_swap);
 }
 
 t_push_swap *merge_sorted_stacks(t_push_swap *push_swap)
 {
-	//t_list_node	*swap;
+	t_list_node	*swap;
 
-	//swap = push_swap->stack_a->first;
-	while (push_swap->stack_b->first != NULL)
+	if (push_swap->stack_a->first->value < push_swap->stack_b->first->value)
+		swap = push_swap->stack_a->first;
+	else
+		swap = push_swap->stack_b->first;
+	if (push_swap->stack_a->first == swap)
+		exec_command(push_swap, "ra");
+	while (push_swap->stack_b->first != NULL )
 	{
-		if (push_swap->stack_b->first->value < push_swap->stack_a->first->value)
+		if (push_swap->stack_b->first->value < push_swap->stack_a->first->value \
+			|| push_swap->stack_a->first == swap)
 		{
 			exec_command(push_swap, "pa");
 		}
+		
 		if (push_swap->stack_b->first != NULL && push_swap->stack_b->first->value > push_swap->stack_a->first->value)
 			exec_command(push_swap, "ra");
 		//print_stacks(push_swap);
