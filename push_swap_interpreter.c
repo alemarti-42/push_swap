@@ -16,9 +16,11 @@ void	add_command(t_push_swap *push_swap, char *cmd)
 {
 	char	*swap;
 
+	printf("##Command:\t%s", cmd);
 	swap = ft_strjoin(push_swap->commands, cmd);
 	free(push_swap->commands);
 	push_swap->commands = swap;
+	print_stacks(push_swap);
 	return ;
 }
 
@@ -91,7 +93,7 @@ int	exec_sa(t_push_swap *push_swap)
 {
 	if (exec_swap(push_swap->stack_a))
 		return (-1);
-	add_command(push_swap, "sa");
+	add_command(push_swap, "sa\n");
 	return (0);
 }
 
@@ -99,7 +101,7 @@ int	exec_sb(t_push_swap *push_swap)
 {
 	if (exec_swap(push_swap->stack_b) == -1)
 		return (-1);
-	add_command(push_swap, "sb");
+	add_command(push_swap, "sb\n");
 	return (0);
 }
 
@@ -127,7 +129,7 @@ int	exec_pa(t_push_swap *push_swap)
 {
 	if (exec_push(push_swap->stack_b, push_swap->stack_a) == -1)
 		return (-1);
-	add_command(push_swap, "pa");
+	add_command(push_swap, "pa\n");
 	return (0);
 }
 
@@ -135,7 +137,7 @@ int	exec_pb(t_push_swap *push_swap)
 {
 	if (exec_push(push_swap->stack_a, push_swap->stack_b) == -1)
 		return (-1);
-	add_command(push_swap, "pb");
+	add_command(push_swap, "pb\n");
 	return (0);
 }
 
@@ -144,7 +146,7 @@ int	exec_ra(t_push_swap *push_swap)
 	
 	if (rotate(push_swap->stack_a) == NULL)
 		return (-1);
-	add_command(push_swap, "ra");
+	add_command(push_swap, "ra\n");
 	return (0);
 }
 
@@ -153,7 +155,7 @@ int	exec_rb(t_push_swap *push_swap)
 	
 	if (rotate(push_swap->stack_b) == NULL)
 		return (-1);
-	add_command(push_swap, "rb");
+	add_command(push_swap, "rb\n");
 	return (0);
 }
 
@@ -170,7 +172,7 @@ int	exec_rra(t_push_swap *push_swap)
 	
 	if (rev_rotate(push_swap->stack_a) == NULL)
 		return (-1);
-	add_command(push_swap, "rra");
+	add_command(push_swap, "rra\n");
 	return (0);
 }
 
@@ -179,7 +181,7 @@ int	exec_rrb(t_push_swap *push_swap)
 	
 	if (rev_rotate(push_swap->stack_b) == NULL)
 		return (-1);
-	add_command(push_swap, "rrb");
+	add_command(push_swap, "rrb\n");
 	return (0);
 }
 

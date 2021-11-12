@@ -19,6 +19,7 @@ void print_stacks(t_push_swap *push_swap)
 	print_list(push_swap->stack_a);
 	printf("[B]size:%d:\t", push_swap->stack_b->size);
 	print_list(push_swap->stack_b);
+	printf("\n");
 }
 //
 
@@ -51,6 +52,8 @@ void	push_node(t_list_node *new_node, t_list *list)
 		new_node->next = new_node;
 		new_node->prev = new_node;
 		list->first = new_node;
+		/* list->min = new_node;
+		list->max = new_node; */
 		return ;
 	}
 	new_node->next = list->first;
@@ -58,6 +61,11 @@ void	push_node(t_list_node *new_node, t_list *list)
 	list->first->prev->next = new_node;
 	list->first->prev = new_node;
 	list->first = new_node;
+	/* if (new_node->value < list->min)
+		list->min = new_node;
+	if (new_node->value > list->max)
+		list->max = new_node; */
+	return;
 }
 
 t_list_node	*pop_node(t_list *list)
@@ -143,7 +151,7 @@ t_list	*string_tolist(char* str)
 	return (res);
 }
 
-int		stack_is_ordered(t_list *stack)
+int		stack_is_sorted(t_list *stack)
 {
 	t_list_node	*sentinel;
 

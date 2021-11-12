@@ -51,7 +51,7 @@ int	exec_phrase(t_push_swap *push_swap, char *phrase)
 int	main(int argc, char *argv[])
 {
 	t_push_swap *push_swap;
-	char		*commands;
+	//char		*commands;
 
 	if (argc > 2)
 		return (0);
@@ -74,19 +74,23 @@ int	main(int argc, char *argv[])
 
 	/* commands = "pb pb pb ra ra ra pb ra pb ra  ra pb ra pb ra ra sa rra  sb pa pa pa rb rb pa sa sb pa pa pa";
 	push_swap->stack_a = string_tolist("2 5 1 8 7 10 3 6 4 9"); */
-	commands = "pb pa sa";
+	
 	
 
 	print_stacks(push_swap);
 //	exec_phrase(push_swap, commands);
-	if (push_swap->stack_a->size == 2)
-		sort_size_two(push_swap);
-	/* if (push_swap->stack_a->size == 3)
-		sort_size_three(push_swap); */
-	else
-		exec_phrase(push_swap, commands);
+	if (stack_is_sorted(push_swap->stack_a) == -1)
+	{
+		if (push_swap->stack_a->size == 2)
+			sort_size_two(push_swap, push_swap->stack_a);
+		else if (push_swap->stack_a->size == 3)
+			sort_size_three(push_swap, push_swap->stack_a);
+		else if (push_swap->stack_a->size <= 6)
+			sort_size_six(push_swap);
+	}
+	
+	printf("\n\tpush_swap->commands:\n%s\nSorted:[%d]\nStacks:\n", push_swap->commands, stack_is_sorted(push_swap->stack_a));
 	print_stacks(push_swap);
-	printf("\n\tpush_swap->commands: [%s]\nOrdered:[%d]", push_swap->commands, stack_is_ordered(push_swap->stack_a));
 	return (0);
 }
 

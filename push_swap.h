@@ -33,7 +33,8 @@ typedef struct s_list
 {
 	int					size;
 	struct s_list_node	*first;
-	//struct s_list_node	*last;
+	/* struct s_list_node	*min;
+	struct s_list_node	*max; */
 }					t_list;
 
 typedef struct s_list_node
@@ -58,7 +59,7 @@ t_list		*rev_rotate(t_list *list);
 void		queue_node(t_list_node *new_node, t_list *list);
 void 		print_list(t_list *list);
 t_list		*string_tolist(char* str);
-int			stack_is_ordered(t_list *stack);
+int			stack_is_sorted(t_list *stack);
 
 //push_swap_interpreter.c
 
@@ -84,8 +85,10 @@ int	exec_rrb(t_push_swap *push_swap);
 int	exec_rrr(t_push_swap *push_swap);
 
 //small_stack_utils.c
-t_push_swap	*sort_size_two(t_push_swap* push_swap);
-t_push_swap	*sort_size_three(t_push_swap* push_swap);
+void		sort_size_two(t_push_swap* push_swap, t_list *stack);
+void		sort_size_three(t_push_swap* push_swap, t_list *stack);
+t_push_swap	*sort_size_six(t_push_swap* push_swap);
+t_push_swap *merge_sorted_stacks(t_push_swap *push_swap);
 
 
 
