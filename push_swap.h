@@ -90,8 +90,12 @@ void		sort_size_three(t_push_swap* push_swap, t_list *stack);
 t_push_swap	*sort_size_six(t_push_swap* push_swap);
 t_push_swap *merge_sorted_stacks(t_push_swap *push_swap);
 
-
-
+//big_stack_utils.c
+void	sort_big_stack(t_push_swap* push_swap);
+int *stack_to_array(t_list *stack);
+void sort_array(int arr[], int n);
+void swap(int* xp, int* yp);
+int value_to_index(int value , t_list *stack);
 
 /* t_list_node	*append_element(int element, t_list *list);
 void		free_list_nodes(t_list *list);

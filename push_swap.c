@@ -79,6 +79,7 @@ int	main(int argc, char *argv[])
 
 	print_stacks(push_swap);
 //	exec_phrase(push_swap, commands);
+
 	if (stack_is_sorted(push_swap->stack_a) == -1)
 	{
 		if (push_swap->stack_a->size == 2)
@@ -87,6 +88,8 @@ int	main(int argc, char *argv[])
 			sort_size_three(push_swap, push_swap->stack_a);
 		else if (push_swap->stack_a->size <= 6)
 			sort_size_six(push_swap);
+		else
+			sort_big_stack(push_swap);
 	}
 	
 	printf("\n\tpush_swap->commands:\n%s\nSorted:[%d]\nStacks:\n", push_swap->commands, stack_is_sorted(push_swap->stack_a));

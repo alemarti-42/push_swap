@@ -13,7 +13,8 @@
 SRCS		=	push_swap.c					\
 				list_utils.c				\
 				push_swap_interpreter.c		\
-				small_stack_utils.c
+				small_stack_utils.c			\
+				big_stack_utils.c
 
 
 OBJS		= ${SRCS:.c=.o}
