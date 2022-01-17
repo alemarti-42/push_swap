@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:11:59 by alemarti          #+#    #+#             */
-/*   Updated: 2021/11/10 15:36:57 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/01/17 14:49:46 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,11 @@ t_push_swap *merge_sorted_stacks(t_push_swap *push_swap);
 
 //big_stack_utils.c
 void	sort_big_stack(t_push_swap* push_swap);
+int		check_for_duplicates(int *array, int size);
+void	print_int_array(int *array, int size);
 int *stack_to_array(t_list *stack);
 void sort_array(int arr[], int n);
-void swap(int* xp, int* yp);
+void swap_mem(int* xp, int* yp);
 int value_to_index(int value , t_list *stack);
 
 /* t_list_node	*append_element(int element, t_list *list);
