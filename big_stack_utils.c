@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:18:38 by alemarti          #+#    #+#             */
-/*   Updated: 2022/01/21 16:37:03 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/01/21 18:01:59 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,33 @@
 void	sort_big_stack(t_push_swap *push_swap)
 {
 	int	*sorted_array;
-	int	i;
+	//int	i;
 
 	printf("\n[SORT BIG STACK]\n");
+	
+	sorted_array = stack_to_array(push_swap->stack_a);
+	print_int_array(sorted_array, push_swap->stack_a->size);
+	sort_array(sorted_array, push_swap->stack_a->size);
+	print_int_array(sorted_array, push_swap->stack_a->size);
+	stack_to_indexes(push_swap->stack_a, sorted_array);
+	printf("\n");
+	print_list(push_swap->stack_a);
+	print_int_array(sorted_array, push_swap->stack_a->size);
 	sorted_array = stack_to_array(push_swap->stack_a);
 	sort_array(sorted_array, push_swap->stack_a->size);
-	i = 5;
-	printf("NUM:%dINDEX:%d\n", i, value_to_index(i, push_swap->stack_a));
-	printf("\n\t[target order]: \n");
 	print_int_array(sorted_array, push_swap->stack_a->size);
 	print_list(push_swap->stack_a);
-	stack_to_indexes(push_swap->stack_a, sorted_array);
-	print_list(push_swap->stack_a);
+	//i = 5;
+	//printf("NUM:%dINDEX:%d\n", i, value_to_index(i, push_swap->stack_a));
+	//printf("\n\t[target order]: \n");
+	//print_int_array(sorted_array, push_swap->stack_a->size);
+	//print_list(push_swap->stack_a);
+	//stack_to_indexes(push_swap->stack_a, sorted_array);
+	//print_list(push_swap->stack_a);
 
 	check_for_duplicates(sorted_array, push_swap->stack_a->size);
+	final_sorting(push_swap, sorted_array);
+	printf("\n[\\SORT BIG STACK]\n");
 	return ;
 }
 
@@ -55,6 +68,29 @@ void	stack_to_indexes(t_list *stack, int *sorted_array)
 	return ;
 }
 
+int	value_to_index(int value, t_list *stack)
+{
+	int			i;
+	t_list_node	*centinel;
+
+	i = 0;
+	centinel = stack->first;
+	while (centinel->next != stack->first)
+	{
+		if (centinel->value == value)
+		{
+			return (i);
+		}
+		centinel = centinel->next;
+		i++;
+	}
+	if (centinel->value == value)
+	{
+		return (i);
+	}
+	return (-1);
+}
+
 int	check_for_duplicates(int *array, int size)
 {
 	int	i;
@@ -71,14 +107,16 @@ int	check_for_duplicates(int *array, int size)
 	}
 	return (0);
 }
+
 void	print_int_array(int *array, int size)
 {
 	int	i;
 
 	i = 0;
+	printf("\nprint_int_array\t");
 	while (i < size)
 	{
-		printf("\n\t%i", array[i]);
+		printf("\t%i", array[i]);
 		i++;
 	}
 	return ;
@@ -102,7 +140,7 @@ int	*stack_to_array(t_list *stack)
 	return (res);
 }
 
-void	sort_array(int arr[], int size)
+void	sort_array(int *arr, int size)
 {
 	int	i;
 	int	j;
@@ -136,25 +174,3 @@ void	swap_mem(int *xp, int *yp)
 	*yp = tmp;
 }
 
-int	value_to_index(int value, t_list *stack)
-{
-	int			i;
-	t_list_node	*centinel;
-
-	i = 0;
-	centinel = stack->first;
-	while (centinel->next != stack->first)
-	{
-		if (centinel->value == value)
-		{
-			return (i);
-		}
-		centinel = centinel->next;
-		i++;
-	}
-	if (centinel->value == value)
-	{
-		return (i);
-	}
-	return (-1);
-}

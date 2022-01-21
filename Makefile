@@ -6,7 +6,7 @@
 #    By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 15:10:14 by alemarti          #+#    #+#              #
-#    Updated: 2021/11/10 15:13:35 by alemarti         ###   ########.fr        #
+#    Updated: 2022/01/21 17:21:12 by alemarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ SRCS		=	push_swap.c					\
 				list_utils.c				\
 				push_swap_interpreter.c		\
 				small_stack_utils.c			\
-				big_stack_utils.c
+				big_stack_utils.c			\
+				big_sorting.c
 
 
 OBJS		= ${SRCS:.c=.o}

@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:28:37 by alemarti          #+#    #+#             */
-/*   Updated: 2021/11/10 15:37:37 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/01/21 17:39:42 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ void print_list(t_list *list)
 	reader = list->first;
 /* 	reader = list->first;
 	printf("\t\t%d\n", reader->value); */
+	printf("\nprint_list:\t");
 	while (reader->next != list->first)
 	{
 		printf("\t%d", reader->value);
