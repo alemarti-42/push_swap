@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:18:38 by alemarti          #+#    #+#             */
-/*   Updated: 2022/01/17 14:49:35 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/01/21 16:37:03 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,37 @@ void	sort_big_stack(t_push_swap *push_swap)
 	sorted_array = stack_to_array(push_swap->stack_a);
 	sort_array(sorted_array, push_swap->stack_a->size);
 	i = 5;
-	printf("NUM:%dINDEX:%d\n", push_swap->stack_a->size, value_to_index(i, push_swap->stack_a));
+	printf("NUM:%dINDEX:%d\n", i, value_to_index(i, push_swap->stack_a));
 	printf("\n\t[target order]: \n");
 	print_int_array(sorted_array, push_swap->stack_a->size);
+	print_list(push_swap->stack_a);
+	stack_to_indexes(push_swap->stack_a, sorted_array);
+	print_list(push_swap->stack_a);
+
 	check_for_duplicates(sorted_array, push_swap->stack_a->size);
+	return ;
+}
+
+void	stack_to_indexes(t_list *stack, int *sorted_array)
+{
+	t_list_node	*centinel;
+	int			n;
+	int			i;
+
+	centinel = stack->first;
+	i = stack->size;
+	while (i > 0)
+	{
+		n = 0;
+		while (n < stack->size && centinel->value != sorted_array[n])
+			n++;
+		if (centinel->value == sorted_array[n])
+				centinel->value = n;
+		i--;
+		centinel = centinel->next;
+		//centinel->value = value_to_index(centinel->value, stack);
+		//centinel = centinel->next;
+	}
 	return ;
 }
 
