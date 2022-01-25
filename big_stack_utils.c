@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:18:38 by alemarti          #+#    #+#             */
-/*   Updated: 2022/01/21 18:01:59 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/01/25 17:08:47 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,21 @@ void	sort_big_stack(t_push_swap *push_swap)
 	//int	i;
 
 	printf("\n[SORT BIG STACK]\n");
-	
 	sorted_array = stack_to_array(push_swap->stack_a);
-	print_int_array(sorted_array, push_swap->stack_a->size);
+	//print_int_array(sorted_array, push_swap->stack_a->size);
 	sort_array(sorted_array, push_swap->stack_a->size);
-	print_int_array(sorted_array, push_swap->stack_a->size);
+	//print_int_array(sorted_array, push_swap->stack_a->size);
 	stack_to_indexes(push_swap->stack_a, sorted_array);
-	printf("\n");
-	print_list(push_swap->stack_a);
-	print_int_array(sorted_array, push_swap->stack_a->size);
+	//printf("\n");
+	//print_list(push_swap->stack_a);
+	//print_int_array(sorted_array, push_swap->stack_a->size);
 	sorted_array = stack_to_array(push_swap->stack_a);
 	sort_array(sorted_array, push_swap->stack_a->size);
-	print_int_array(sorted_array, push_swap->stack_a->size);
+	//print_int_array(sorted_array, push_swap->stack_a->size);
+	printf("\nCURATED STACK_A \t");
 	print_list(push_swap->stack_a);
+
+
 	//i = 5;
 	//printf("NUM:%dINDEX:%d\n", i, value_to_index(i, push_swap->stack_a));
 	//printf("\n\t[target order]: \n");
@@ -40,7 +42,7 @@ void	sort_big_stack(t_push_swap *push_swap)
 	//print_list(push_swap->stack_a);
 
 	check_for_duplicates(sorted_array, push_swap->stack_a->size);
-	final_sorting(push_swap, sorted_array);
+	final_sorting(push_swap);
 	printf("\n[\\SORT BIG STACK]\n");
 	return ;
 }
