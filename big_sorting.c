@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 17:17:10 by alemarti          #+#    #+#             */
-/*   Updated: 2022/01/25 18:21:19 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:31:23 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,15 @@ void	final_sorting(t_push_swap *push_swap)
 	pivot = chunk_size - 1;
 	while (push_swap->stack_a->size > 0)
 	{
-		sort_chunk(push_swap, pivot);
+		selection_sort(push_swap, pivot);
 		pivot += chunk_size;
 	}
+	while (push_swap->stack_b->size > 0)
+		exec_pa(push_swap);
 	return ;
 }
 
-void	sort_chunk(t_push_swap *push_swap, int pivot)
+void	selection_sort(t_push_swap *push_swap, int pivot)
 {
 	//int	i;
 	int	next_element;
@@ -45,6 +47,7 @@ void	sort_chunk(t_push_swap *push_swap, int pivot)
 		//next_element = closest_element(push_swap, pivot);
 		next_element ++;
 	}
+	
 	return ;
 }
 
