@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:18:38 by alemarti          #+#    #+#             */
-/*   Updated: 2022/01/25 17:08:47 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/01/26 16:20:32 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	sort_big_stack(t_push_swap *push_swap)
 	//stack_to_indexes(push_swap->stack_a, sorted_array);
 	//print_list(push_swap->stack_a);
 
-	check_for_duplicates(sorted_array, push_swap->stack_a->size);
+	//check_for_duplicates(sorted_array, push_swap->stack_a->size);
 	final_sorting(push_swap);
 	printf("\n[\\SORT BIG STACK]\n");
 	return ;
@@ -93,22 +93,7 @@ int	value_to_index(int value, t_list *stack)
 	return (-1);
 }
 
-int	check_for_duplicates(int *array, int size)
-{
-	int	i;
 
-	i = 0;
-	while (i < size - 1)
-	{
-		if (array[i] == array[i+1])
-		{
-			printf("\nDUP: %d", array[i]);
-			return (-1);
-		}
-		i++;
-	}
-	return (0);
-}
 
 void	print_int_array(int *array, int size)
 {

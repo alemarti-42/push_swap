@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:11:59 by alemarti          #+#    #+#             */
-/*   Updated: 2022/01/25 18:30:16 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/01/26 16:22:28 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ typedef struct s_list_node
 }					t_list_node;
 
 //push_swap.c
-int	exec_phrase(t_push_swap *push_swap, char *phrase);
+int			exec_phrase(t_push_swap *push_swap, char *phrase);
+int			check_for_duplicates(int *array, int size);
+
 
 //list_utils.c
 void		 print_stacks(t_push_swap *push_swap);
@@ -58,8 +60,10 @@ t_list		*rotate(t_list *list);
 t_list		*rev_rotate(t_list *list);
 void		queue_node(t_list_node *new_node, t_list *list);
 void 		print_list(t_list *list);
+int			check_only_digits(char *str);
 t_list		*string_tolist(char* str);
 int			stack_is_sorted(t_list *stack);
+
 
 //push_swap_interpreter.c
 
@@ -94,7 +98,6 @@ t_push_swap *merge_sorted_stacks(t_push_swap *push_swap);
 void	sort_big_stack(t_push_swap* push_swap);
 void	stack_to_indexes(t_list *stack, int *sorted_array);
 int 	value_to_index(int value , t_list *stack);
-int		check_for_duplicates(int *array, int size);
 void	print_int_array(int *array, int size);
 int 	*stack_to_array(t_list *stack);
 void 	sort_array(int arr[], int n);

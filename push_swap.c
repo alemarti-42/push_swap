@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:12:03 by alemarti          #+#    #+#             */
-/*   Updated: 2022/01/17 14:23:41 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/01/26 16:22:14 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	exec_phrase(t_push_swap *push_swap, char *phrase)
 int	main(int argc, char *argv[])
 {
 	t_push_swap *push_swap;
+	int	*sorted_array;
 	//char		*commands;
 
 	if (argc > 2)
@@ -62,6 +63,11 @@ int	main(int argc, char *argv[])
 		push_swap->stack_a = string_tolist(argv[1]);
 	if (argc == 1)
 		push_swap->stack_a = string_tolist("2 4 3 5 1");
+	if (push_swap->stack_a == NULL)
+	{
+		printf("!ERROR:	NO SE HA PODIDO INICIALIZAR EL PROGRAMA\n");
+		return (-1);
+	}
 
 	
 	
@@ -79,7 +85,16 @@ int	main(int argc, char *argv[])
 
 	print_stacks(push_swap);
 //	exec_phrase(push_swap, commands);
-
+	sorted_array = stack_to_array(push_swap->stack_a);
+	sort_array(sorted_array, push_swap->stack_a->size);
+	if (check_for_duplicates(sorted_array, push_swap->stack_a->size) == -1)
+	{
+		printf("!ERROR: NUMEROS REPETIDOS\n");
+		//free (push_swap, sorted_array)
+		free (sorted_array);
+		return (-1);
+	}
+	free (sorted_array);
 	if (stack_is_sorted(push_swap->stack_a) == -1)
 	{
 		if (push_swap->stack_a->size == 2)
@@ -94,6 +109,23 @@ int	main(int argc, char *argv[])
 	
 	printf("\n\tpush_swap->commands:\n%s\nSorted:[%d]\nStacks:\n", push_swap->commands, stack_is_sorted(push_swap->stack_a));
 	print_stacks(push_swap);
+	return (0);
+}
+
+int	check_for_duplicates(int *array, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size - 1)
+	{
+		if (array[i] == array[i+1])
+		{
+			printf("\nDUP: %d", array[i]);
+			return (-1);
+		}
+		i++;
+	}
 	return (0);
 }
 

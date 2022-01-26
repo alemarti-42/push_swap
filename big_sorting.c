@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 17:17:10 by alemarti          #+#    #+#             */
-/*   Updated: 2022/01/25 18:31:23 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/01/26 16:53:14 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,36 @@ void	final_sorting(t_push_swap *push_swap)
 	i = n_chunks;
 	chunk_size = push_swap->stack_a->size / n_chunks;
 	pivot = chunk_size - 1;
-	while (push_swap->stack_a->size > 0)
-	{
-		selection_sort(push_swap, pivot);
-		pivot += chunk_size;
-	}
-	while (push_swap->stack_b->size > 0)
-		exec_pa(push_swap);
+	//while (push_swap->stack_a->size > 0)
+	//{
+		selection_sort(push_swap, n_chunks);
+		//pivot += chunk_size;
+	//}
+	//while (push_swap->stack_b->size > 0)
+	//	exec_pa(push_swap);
 	return ;
 }
 
-void	selection_sort(t_push_swap *push_swap, int pivot)
+void	selection_sort(t_push_swap *push_swap, int n_chunks)
 {
 	//int	i;
 	int	next_element;
+	int	chunk_size;
+	int pivot;
 
-	next_element = 0;
+	chunk_size = push_swap->stack_a->size / n_chunks;
 	pivot = push_swap->stack_a->size;
-	//next_element = closest_element(push_swap, pivot);
-	while (next_element < pivot)
+	
+	while (push_swap->stack_a->first)
 	{
-		smart_push(push_swap, next_element);
-		//next_element = closest_element(push_swap, pivot);
-		next_element ++;
+		pivot -= chunk_size;
+		next_element = closest_element(push_swap, pivot);
+		while (next_element >= 0)
+		{
+			smart_push(push_swap, next_element);
+			//next_element = closest_element(push_swap, pivot);
+			next_element = closest_element(push_swap, pivot);
+		}
 	}
 	
 	return ;
@@ -123,7 +130,7 @@ void	smart_push(t_push_swap *push_swap, int element)
 	return ;
 }
 
-int	closest_element(t_push_swap *push_swap, int top_value)
+int	closest_element(t_push_swap *push_swap, int min_value)
 {
 	int			count_rot;
 	int			count_rev;
@@ -135,16 +142,19 @@ int	closest_element(t_push_swap *push_swap, int top_value)
 	count_rev = 0;
 	if (push_swap->stack_a->size == 0)
 		return (-1);
-	while (centinel->value > top_value && count_rot <=  push_swap->stack_a->size)
+	while (centinel->value < min_value && count_rot <=  push_swap->stack_a->size)
 	{
 		centinel = centinel->next;
 		count_rot ++;
 	}
 	if (count_rot >=  push_swap->stack_a->size)
+	{
+		printf("AQUI ENTRO\n");
 		return (-1);
+	}
 	element = centinel->value;
 	centinel = push_swap->stack_a->first;
-	while (centinel->value >top_value)
+	while (centinel->value < min_value)
 	{
 		centinel = centinel->prev;
 		count_rev ++;

@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:28:37 by alemarti          #+#    #+#             */
-/*   Updated: 2022/01/21 17:39:42 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/01/26 16:22:08 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,12 +131,25 @@ void print_list(t_list *list)
 	return ;
 }
 
+int	check_only_digits(char *str)
+{ 
+	while (*str && ((*str >= '0' && *str <= '9') || *str == ' '))
+		str ++;
+	if (*str == 0)
+		return (0);
+	return (-1);
+}
 
 t_list	*string_tolist(char* str)
 {
 	char	**chopped;
 	t_list	*res;
 
+	if (check_only_digits(str) == -1)
+	{
+		printf("!ERROR: Caracteres no numéricos encontrados\n");
+		return (NULL);
+	}
 	res = new_list();
 	chopped = NULL;
 	chopped = ft_split(str, ' ');
@@ -169,3 +182,4 @@ int		stack_is_sorted(t_list *stack)
 	}
 	return (0);
 }
+
