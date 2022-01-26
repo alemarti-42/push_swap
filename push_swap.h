@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:11:59 by alemarti          #+#    #+#             */
-/*   Updated: 2022/01/26 16:22:28 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/01/26 21:16:12 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,9 @@ void 	swap_mem(int* xp, int* yp);
 //big_sorting.c
 void	final_sorting(t_push_swap *push_swap);
 void	selection_sort(t_push_swap *push_swap, int pivot);
+void	smart_allocation(t_push_swap *push_swap, int element);
 void	smart_push(t_push_swap *push_swap, int element);
+void	smart_rotate(t_push_swap *push_swap, int element);
 int		closest_element(t_push_swap *push_swap, int top_value);
 
 
