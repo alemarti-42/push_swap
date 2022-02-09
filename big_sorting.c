@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 17:17:10 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/09 14:19:42 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/09 14:41:53 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ void	final_sorting(t_push_swap *push_swap)
 	int	i;
 	int	pivot;
 
-	n_chunks = 5;
+	n_chunks = 1;
+	while (n_chunks * n_chunks < push_swap->stack_a->size)
+		n_chunks ++;
 	i = n_chunks;
 	chunk_size = push_swap->stack_a->size / n_chunks;
 	pivot = chunk_size - 1;
@@ -30,6 +32,7 @@ void	final_sorting(t_push_swap *push_swap)
 	//}
 	//while (push_swap->stack_b->size > 0)
 	//	exec_pa(push_swap);
+	printf("CHUNKS: %d\n", n_chunks);
 	return ;
 }
 

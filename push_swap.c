@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:12:03 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/09 14:11:09 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/09 14:44:00 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,8 @@ int	main(int argc, char *argv[])
 			sort_big_stack(push_swap);
 	}
 	n_commands = count_lines(push_swap->commands);
-	printf("\n\tpush_swap->commands:\n%s\nCommands: %dSorted:[%d]\nStacks:\n", push_swap->commands, n_commands, stack_is_sorted(push_swap->stack_a));
+	//printf("\n\tpush_swap->commands:\n%s\n", push_swap->commands);
+	printf("\n\tn_commands: %d Sorted:[%d]\nStacks:\n", n_commands, stack_is_sorted(push_swap->stack_a));
 	print_stacks(push_swap);
 	return (0);
 }
