@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:28:37 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/09 20:29:12 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/09 20:57:17 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,24 +149,30 @@ t_list	*string_tolist(char* str)
 {
 	char	**chopped;
 	t_list	*res;
+	void	*centinel;
 
 	if (check_only_digits(str) == -1)
 	{
 		printf("!ERROR: Caracteres no numéricos encontrados\n");
+		free (str);
 		return (NULL);
 	}
 	res = new_list();
-	chopped = NULL;
 	chopped = ft_split(str, ' ');
+	centinel = chopped;
 	printf("[TEST]STRING: %s\n", str);
+
+	free (str);
 	while(*chopped)
 	{
-		printf("[TEST]ATOI: %d\n", ft_atoi(*chopped));
+		//printf("[TEST]ATOI: %d\n", ft_atoi(*chopped));
 
 		queue_node(new_node(ft_atoi(*chopped)), res);
 		free(*chopped);
 		chopped++;
 	}
+	free (centinel);
+	
 	return (res);
 }
 

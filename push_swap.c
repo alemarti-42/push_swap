@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:12:03 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/09 20:18:52 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/09 20:57:59 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,29 +118,16 @@ int	main(int argc, char *argv[])
 		return (-1);
 	push_swap = init_push_swap();
 	
-	if (argc == 2)
-		push_swap->stack_a = string_tolist(argv[1]);
-	if ( argc > 2)
-		push_swap->stack_a = string_tolist(join_args(argc, argv));
+	// if (argc == 2)
+	// 	push_swap->stack_a = string_tolist(argv[1]);
+
+	push_swap->stack_a = string_tolist(join_args(argc, argv));
+	
 	if (push_swap->stack_a == NULL)
 	{
 		printf("!ERROR:	NO SE HA PODIDO INICIALIZAR EL PROGRAMA\n");
 		return (-1);
 	}
-
-	
-	
-	//commands = "pb pb ra ra ra ra ra pb ra pb ra  pb pb ra pb ra ra pb  ra  pa pa rb rb pa rrb rrb pa rra rb pa pa rra rra pa pa";
-	//push_swap->stack_a = string_tolist("1 2 3 4 5 6");
-
-	//commands = "pb pb ra pa pa ra ra sa ra ra";
-	//commands = "pb ra pb rra pb ra pa sb pa pa";
-	//push_swap->stack_a = string_tolist("2 3 1 5 4");
-
-	/* commands = "pb pb pb ra ra ra pb ra pb ra  ra pb ra pb ra ra sa rra  sb pa pa pa rb rb pa sa sb pa pa pa";
-	push_swap->stack_a = string_tolist("2 5 1 8 7 10 3 6 4 9"); */
-	
-	
 
 	print_stacks(push_swap);
 //	exec_phrase(push_swap, commands);
@@ -154,7 +141,9 @@ int	main(int argc, char *argv[])
 		free (sorted_array);
 		return (-1);
 	}
+	
 	free (sorted_array);
+	
 	if (stack_is_sorted(push_swap->stack_a) == -1)
 	{
 		if (push_swap->stack_a->size == 2)
@@ -167,12 +156,15 @@ int	main(int argc, char *argv[])
 			sort_big_stack(push_swap);
 	}
 	//push_swap->commands = simplify_rotations(push_swap->commands);
+		
+
 	n_commands = count_lines(push_swap->commands);
 	//printf("\n\tpush_swap->commands:\n%s\n", push_swap->commands);
 	ft_putstr_fd(push_swap->commands, 0);
 	printf("\n\tsize %d \n\t%d commands\n\tSorted:[%d]\n",push_swap->stack_a->size, n_commands, stack_is_sorted(push_swap->stack_a));
 	
 	//print_stacks(push_swap);
+	system("leaks push_swap");
 	return (0);
 }
 

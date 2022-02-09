@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 17:49:23 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/09 19:37:49 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/09 20:53:09 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_push_swap	*init_push_swap(void)
 	new_push_swap = malloc(sizeof(t_push_swap));
 	new_push_swap->commands = malloc (1);
 	*new_push_swap->commands = 0;
-	new_push_swap->stack_a = new_list();
+	//new_push_swap->stack_a = new_list();
 	new_push_swap->stack_b = new_list();
 	return (new_push_swap);
 }
