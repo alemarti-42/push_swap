@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:28:37 by alemarti          #+#    #+#             */
-/*   Updated: 2022/01/26 16:22:08 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/09 14:17:16 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void print_list(t_list *list)
 
 int	check_only_digits(char *str)
 { 
-	while (*str && ((*str >= '0' && *str <= '9') || *str == ' '))
+	while (*str && ((*str >= '0' && *str <= '9') || *str == ' ' || *str == '-'))
 		str ++;
 	if (*str == 0)
 		return (0);

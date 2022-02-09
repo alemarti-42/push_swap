@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 17:17:10 by alemarti          #+#    #+#             */
-/*   Updated: 2022/01/26 21:16:46 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/09 14:19:42 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,72 +41,76 @@ void	selection_sort(t_push_swap *push_swap, int n_chunks)
 	int pivot;
 
 	chunk_size = push_swap->stack_a->size / n_chunks;
-	pivot = push_swap->stack_a->size;
+	pivot = 0;
 	
 	while (push_swap->stack_a->size > 0)
 	{
-		pivot -= chunk_size;
+		pivot += chunk_size;
 		next_element = closest_element(push_swap, pivot);
 		while (next_element >= 0)
 		{
 			printf("SELECTION SORT: next elem: %d, pivot %d", next_element, pivot);
-			smart_allocation(push_swap, next_element);
+			//smart_allocation(push_swap, next_element);
 			smart_push(push_swap, next_element);
 			//next_element = closest_element(push_swap, pivot);
 			next_element = closest_element(push_swap, pivot);
 		}
 	}
+	while (push_swap->stack_b->first->value < push_swap->stack_b->first->prev->value)
+		exec_rrb(push_swap);
+	while (push_swap->stack_b->size > 0)
+		exec_pa(push_swap);
 	
 	return ;
 }
 
 
  
-void	smart_allocation(t_push_swap *push_swap, int element)
+int	smart_allocation(t_push_swap *push_swap, int element)
 {
 	//t_list_node	*head_b;
 	t_list_node	*centinel;
-	int			min_value;
 	int			max_value;
+	int			i;
 
 	//int			target_element;
 
 	//head_b = push_swap->stack_b->first;
 	if (push_swap->stack_b->size == 0)
-		return;
+		return (0);
+	i = 0;
 	centinel = push_swap->stack_b->first;
-	min_value = push_swap->stack_b->first->value;
 	max_value = push_swap->stack_b->first->value;
 	printf("SMART ALLOC1:\t%d\n", element);
-	while (centinel->next != push_swap->stack_b->first && (centinel->value < element && centinel->next->value < element))
+	
+	while (i < push_swap->stack_b->size)
 	{
-		printf("SMART ALLOC2:\t%d\n", centinel->value);
-		if (centinel->value < min_value)
-			min_value = centinel->value;
+		if (centinel->prev->value > element && centinel->value < element)
+			return(centinel->value);
 		if (centinel->value > max_value)
 			max_value = centinel->value;
 		centinel = centinel->next;
+		i++;
 	}
-	
-	if (min_value > element || max_value < element)
-	{
-		//NO VALEsmart_rotate(push_swap, push_swap->stack_b, min_value);
-		//printf("MINVALUE\t%d\n", min_value);
-		return ;
-	}
-	// NO VALE smart_rotate(push_swap, push_swap->stack_b, centinel->value);
-	return ;
+	printf("SMART ALLOC MAX VAL: %d\n", max_value);
+	return(max_value);
 
-	// int			i;
-	// t_list_node	*centinel;
-
-	// i = 0;
-	// centinel = push_swap->stack_b->first;
-	// while (i < push_swap->stack_b->size && centinel->value < element)
+	// while (centinel->next != push_swap->stack_b->first && (centinel->value < element && centinel->next->value < element))
 	// {
+	// 	printf("SMART ALLOC2:\t%d\n", centinel->value);
+	// 	if (centinel->value < min_value)
+	// 		min_value = centinel->value;
+	// 	if (centinel->value > max_value)
+	// 		max_value = centinel->value;
 	// 	centinel = centinel->next;
-	// 	i ++;
 	// }
+	
+	// if (min_value > element || max_value < element)
+	// {
+	// 	return ;
+	// }
+	// return ;
+
 }
 
 int	get_biggest_node(t_list *stack)
@@ -153,40 +157,47 @@ void	smart_push(t_push_swap *push_swap, int element)
 	// 	else
 	// 		exec_rra(push_swap);
 	// }
-	smart_rotate(push_swap, element);
+	smart_rotate(push_swap, push_swap->stack_a, element);
+	smart_rotate(push_swap, push_swap->stack_b, smart_allocation(push_swap, element));
 	exec_pb (push_swap);
 	return ;
 }
 
-void	smart_rotate(t_push_swap *push_swap, int element)
+void	smart_rotate(t_push_swap *push_swap, t_list *stack, int element)
 {
 	int			count_rot;
 	t_list_node	*centinel;
 
 	
-	if (push_swap->stack_a->first == NULL)
+	if (stack->first == NULL)
 		return ;
 	count_rot = 0;
-	centinel = push_swap->stack_a->first;
-	while (centinel->next != push_swap->stack_a->first && centinel->value != element)
+	centinel = stack->first;
+	while (centinel->next != stack->first && centinel->value != element)
 	{
 		centinel = centinel->next;
 		count_rot ++;
 	}
-	if (count_rot > push_swap->stack_a->size /2)
+	if (count_rot > stack->size /2)
 		count_rot = -1;
 
-	while (push_swap->stack_a->first->value != element)
+	while (stack->first->value != element)
 	{
 		printf("element smart rotate\t%d\n", element);
 		if (count_rot > 0)
-			exec_ra(push_swap);
+			if (stack == push_swap->stack_a)
+				exec_ra(push_swap);
+			else
+				exec_rb(push_swap);
 		else
-			exec_rra(push_swap);
+			if (stack == push_swap->stack_a)
+				exec_rra(push_swap);
+			else
+				exec_rrb(push_swap);
 	}
 }
 
-int	closest_element(t_push_swap *push_swap, int min_value)
+int	closest_element(t_push_swap *push_swap, int max_value)
 {
 	int			count_rot;
 	int			count_rev;
@@ -197,10 +208,10 @@ int	closest_element(t_push_swap *push_swap, int min_value)
 	count_rot = 0;
 	count_rev = 0;
 	element = 0;
-	printf("MINVALUE CLOSEST ELEMNT %d\n", min_value);
+	printf("MINVALUE CLOSEST ELEMNT %d\n", max_value);
 	if (push_swap->stack_a->size == 0)
 		return (-1);
-	while (centinel->value < min_value && count_rot <=  push_swap->stack_a->size)
+	while (centinel->value > max_value && count_rot <=  push_swap->stack_a->size)
 	{
 		centinel = centinel->next;
 		count_rot ++;
@@ -212,7 +223,7 @@ int	closest_element(t_push_swap *push_swap, int min_value)
 	}
 	element = centinel->value;
 	centinel = push_swap->stack_a->first;
-	while (centinel->value < min_value)
+	while (centinel->value > max_value)
 	{
 		centinel = centinel->prev;
 		count_rev ++;

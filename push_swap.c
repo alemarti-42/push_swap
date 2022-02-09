@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:12:03 by alemarti          #+#    #+#             */
-/*   Updated: 2022/01/26 16:22:14 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/09 14:11:09 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,22 @@ int	exec_phrase(t_push_swap *push_swap, char *phrase)
 	return (0);
 }
 
+int	count_lines(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (*str)
+		if (*(str++) == '\n')
+			i++;
+	return (i);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_push_swap *push_swap;
 	int	*sorted_array;
+	int	n_commands;
 	//char		*commands;
 
 	if (argc > 2)
@@ -106,8 +118,8 @@ int	main(int argc, char *argv[])
 		else
 			sort_big_stack(push_swap);
 	}
-	
-	printf("\n\tpush_swap->commands:\n%s\nSorted:[%d]\nStacks:\n", push_swap->commands, stack_is_sorted(push_swap->stack_a));
+	n_commands = count_lines(push_swap->commands);
+	printf("\n\tpush_swap->commands:\n%s\nCommands: %dSorted:[%d]\nStacks:\n", push_swap->commands, n_commands, stack_is_sorted(push_swap->stack_a));
 	print_stacks(push_swap);
 	return (0);
 }
