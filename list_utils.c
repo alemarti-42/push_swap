@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:28:37 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/09 14:17:16 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/09 20:10:30 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void print_list(t_list *list)
 	reader = list->first;
 /* 	reader = list->first;
 	printf("\t\t%d\n", reader->value); */
-	printf("\nprint_list:\t");
+	//printf("\nprint_list:\t");
 	while (reader->next != list->first)
 	{
 		printf("\t%d", reader->value);
@@ -180,6 +180,6 @@ int		stack_is_sorted(t_list *stack)
 		}
 		sentinel = sentinel->next;
 	}
-	return (0);
+	return (1);
 }
 

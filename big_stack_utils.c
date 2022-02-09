@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:18:38 by alemarti          #+#    #+#             */
-/*   Updated: 2022/01/26 16:20:32 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/09 19:43:08 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	sort_big_stack(t_push_swap *push_swap)
 	sorted_array = stack_to_array(push_swap->stack_a);
 	sort_array(sorted_array, push_swap->stack_a->size);
 	//print_int_array(sorted_array, push_swap->stack_a->size);
-	printf("\nCURATED STACK_A \t");
+	printf("\nCURATED STACK_A--\n");
 	print_list(push_swap->stack_a);
 
 

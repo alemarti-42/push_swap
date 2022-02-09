@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 17:49:23 by alemarti          #+#    #+#             */
-/*   Updated: 2022/01/17 14:17:33 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/09 19:37:49 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	add_command(t_push_swap *push_swap, char *cmd)
 {
 	char	*swap;
 
-	printf("##Command:\t%s", cmd);
+	//printf("##Command:\t%s", cmd);
 	swap = ft_strjoin(push_swap->commands, cmd);
 	free(push_swap->commands);
 	push_swap->commands = swap;
-	print_stacks(push_swap);
+	//print_stacks(push_swap);
 	return ;
 }
 

@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:11:59 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/09 13:48:10 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/09 19:22:08 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct s_list_node
 
 //push_swap.c
 int			exec_phrase(t_push_swap *push_swap, char *phrase);
+int	count_lines(char *str);
+char	*join_args(int argc, char *argv[]);
 int			check_for_duplicates(int *array, int size);
 
 

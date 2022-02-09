@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 17:17:10 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/09 14:41:53 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/09 20:16:45 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ void	final_sorting(t_push_swap *push_swap)
 {
 	int	chunk_size;
 	int	n_chunks;
-	int	i;
 	int	pivot;
 
 	n_chunks = 1;
 	while (n_chunks * n_chunks < push_swap->stack_a->size)
 		n_chunks ++;
-	i = n_chunks;
 	chunk_size = push_swap->stack_a->size / n_chunks;
 	pivot = chunk_size - 1;
 	//while (push_swap->stack_a->size > 0)
@@ -52,7 +50,7 @@ void	selection_sort(t_push_swap *push_swap, int n_chunks)
 		next_element = closest_element(push_swap, pivot);
 		while (next_element >= 0)
 		{
-			printf("SELECTION SORT: next elem: %d, pivot %d", next_element, pivot);
+			//printf("SELECTION SORT: next elem: %d, pivot %d", next_element, pivot);
 			//smart_allocation(push_swap, next_element);
 			smart_push(push_swap, next_element);
 			//next_element = closest_element(push_swap, pivot);
@@ -84,7 +82,7 @@ int	smart_allocation(t_push_swap *push_swap, int element)
 	i = 0;
 	centinel = push_swap->stack_b->first;
 	max_value = push_swap->stack_b->first->value;
-	printf("SMART ALLOC1:\t%d\n", element);
+	//printf("SMART ALLOC1:\t%d\n", element);
 	
 	while (i < push_swap->stack_b->size)
 	{
@@ -95,24 +93,8 @@ int	smart_allocation(t_push_swap *push_swap, int element)
 		centinel = centinel->next;
 		i++;
 	}
-	printf("SMART ALLOC MAX VAL: %d\n", max_value);
+	//printf("SMART ALLOC MAX VAL: %d\n", max_value);
 	return(max_value);
-
-	// while (centinel->next != push_swap->stack_b->first && (centinel->value < element && centinel->next->value < element))
-	// {
-	// 	printf("SMART ALLOC2:\t%d\n", centinel->value);
-	// 	if (centinel->value < min_value)
-	// 		min_value = centinel->value;
-	// 	if (centinel->value > max_value)
-	// 		max_value = centinel->value;
-	// 	centinel = centinel->next;
-	// }
-	
-	// if (min_value > element || max_value < element)
-	// {
-	// 	return ;
-	// }
-	// return ;
 
 }
 
@@ -186,7 +168,7 @@ void	smart_rotate(t_push_swap *push_swap, t_list *stack, int element)
 
 	while (stack->first->value != element)
 	{
-		printf("element smart rotate\t%d\n", element);
+		//printf("element smart rotate\t%d\n", element);
 		if (count_rot > 0)
 			if (stack == push_swap->stack_a)
 				exec_ra(push_swap);
@@ -211,7 +193,7 @@ int	closest_element(t_push_swap *push_swap, int max_value)
 	count_rot = 0;
 	count_rev = 0;
 	element = 0;
-	printf("MINVALUE CLOSEST ELEMNT %d\n", max_value);
+	//printf("MINVALUE CLOSEST ELEMNT %d\n", max_value);
 	if (push_swap->stack_a->size == 0)
 		return (-1);
 	while (centinel->value > max_value && count_rot <=  push_swap->stack_a->size)
@@ -221,7 +203,7 @@ int	closest_element(t_push_swap *push_swap, int max_value)
 	}
 	if (count_rot >  push_swap->stack_a->size)
 	{
-		printf("chunk completo\n");
+		//printf("-- chunk completo pivot: %d --\n", max_value);
 		return (-1);
 	}
 	element = centinel->value;

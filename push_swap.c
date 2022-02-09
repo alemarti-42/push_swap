@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:12:03 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/09 14:44:00 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/09 20:18:52 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	exec_phrase(t_push_swap *push_swap, char *phrase)
 	commands = ft_split(phrase, ' ');
 	while (read(0, buf, 3))
 	{
-		printf("\tCMD: %d  \t--%s--\n", ++count, buf);
+		//printf("\tCMD: %d  \t--%s--\n", ++count, buf);
 		add_command(push_swap, " ");
 		exec_command(push_swap, buf);
 		print_stacks(push_swap);
@@ -59,6 +59,54 @@ int	count_lines(char *str)
 	return (i);
 }
 
+char	*join_args(int argc, char *argv[])
+{
+	int		i;
+	char	*res;
+	char	*swap;
+
+	i = 1;
+	res = malloc(1);
+	*res = 0;
+	while (i < argc)
+	{
+		swap = ft_strjoin(res, argv[i]);
+		free(res);
+		res = swap;
+		swap = ft_strjoin(res, " ");
+		free(res);
+		res = swap;
+		i++;
+	}
+	printf("RES: %s\n", res);
+	return (res);
+}
+
+// char	*simplify_rotations(char *commands)
+// {
+// 	int	i;
+// 	int	next_rot;
+// 	int	next_rev;
+
+// 	i = 0;
+// 	next_rot = -1;
+// 	next_rev = -1;
+// 	while(commands[i])
+// 	{
+// 		if (commands[i] == 'r')
+// 		{
+// 			if (commands[i] == 'r')
+// 			{
+// 				if (commands[i] == 'a')
+// 					next_rev == 1;
+// 				if (commands[i] == 'b' && next_rev == 1)
+// 			}
+// 		}
+// 		i++;
+// 	}
+
+// }
+
 int	main(int argc, char *argv[])
 {
 	t_push_swap *push_swap;
@@ -66,15 +114,14 @@ int	main(int argc, char *argv[])
 	int	n_commands;
 	//char		*commands;
 
-	if (argc > 2)
-		return (0);
-
+	if (argc <= 1)
+		return (-1);
 	push_swap = init_push_swap();
-
+	
 	if (argc == 2)
 		push_swap->stack_a = string_tolist(argv[1]);
-	if (argc == 1)
-		push_swap->stack_a = string_tolist("2 4 3 5 1");
+	if ( argc > 2)
+		push_swap->stack_a = string_tolist(join_args(argc, argv));
 	if (push_swap->stack_a == NULL)
 	{
 		printf("!ERROR:	NO SE HA PODIDO INICIALIZAR EL PROGRAMA\n");
@@ -101,7 +148,8 @@ int	main(int argc, char *argv[])
 	sort_array(sorted_array, push_swap->stack_a->size);
 	if (check_for_duplicates(sorted_array, push_swap->stack_a->size) == -1)
 	{
-		printf("!ERROR: NUMEROS REPETIDOS\n");
+		//printf("!ERROR: NUMEROS REPETIDOS\n");
+		ft_putstr_fd("!NUMEROS REPETIDOS\n", 0);
 		//free (push_swap, sorted_array)
 		free (sorted_array);
 		return (-1);
@@ -118,10 +166,13 @@ int	main(int argc, char *argv[])
 		else
 			sort_big_stack(push_swap);
 	}
+	//push_swap->commands = simplify_rotations(push_swap->commands);
 	n_commands = count_lines(push_swap->commands);
 	//printf("\n\tpush_swap->commands:\n%s\n", push_swap->commands);
-	printf("\n\tn_commands: %d Sorted:[%d]\nStacks:\n", n_commands, stack_is_sorted(push_swap->stack_a));
-	print_stacks(push_swap);
+	ft_putstr_fd(push_swap->commands, 0);
+	printf("\n\tsize %d \n\t%d commands\n\tSorted:[%d]\n",push_swap->stack_a->size, n_commands, stack_is_sorted(push_swap->stack_a));
+	
+	//print_stacks(push_swap);
 	return (0);
 }
 
@@ -134,7 +185,6 @@ int	check_for_duplicates(int *array, int size)
 	{
 		if (array[i] == array[i+1])
 		{
-			printf("\nDUP: %d", array[i]);
 			return (-1);
 		}
 		i++;
