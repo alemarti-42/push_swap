@@ -15,12 +15,10 @@
 
 int	exec_phrase(t_push_swap *push_swap, char *phrase)
 {
-	int 	count;
 	char	**commands;
 	char	*buf;
 
-	buf = ft_strdup("\0\0\0\0\0");	
-	count = 0;
+	buf = ft_strdup("\0\0\0\0\0");
 	commands = ft_split(phrase, ' ');
 	while (read(0, buf, 3))
 	{
@@ -78,7 +76,7 @@ char	*join_args(int argc, char *argv[])
 		res = swap;
 		i++;
 	}
-	printf("RES: %s\n", res);
+	//printf("RES: %s\n", res);
 	return (res);
 }
 
@@ -111,7 +109,7 @@ int	main(int argc, char *argv[])
 {
 	t_push_swap *push_swap;
 	int	*sorted_array;
-	int	n_commands;
+	//int	n_commands;
 	//char		*commands;
 
 	if (argc <= 1)
@@ -125,18 +123,21 @@ int	main(int argc, char *argv[])
 	
 	if (push_swap->stack_a == NULL)
 	{
-		printf("!ERROR:	NO SE HA PODIDO INICIALIZAR EL PROGRAMA\n");
+		ft_putstr_fd("Fallo inicializacion\n", 2);
+		ft_putstr_fd("Error\n", 1);
+		//system("leaks push_swap");
 		return (-1);
 	}
 
-	print_stacks(push_swap);
+	//print_stacks(push_swap);
 //	exec_phrase(push_swap, commands);
 	sorted_array = stack_to_array(push_swap->stack_a);
 	sort_array(sorted_array, push_swap->stack_a->size);
 	if (check_for_duplicates(sorted_array, push_swap->stack_a->size) == -1)
 	{
 		//printf("!ERROR: NUMEROS REPETIDOS\n");
-		ft_putstr_fd("!NUMEROS REPETIDOS\n", 0);
+		ft_putstr_fd("Numeros repetidos\n", 2);
+		ft_putstr_fd("Error\n", 1);
 		//free (push_swap, sorted_array)
 		free (sorted_array);
 		return (-1);
@@ -158,13 +159,13 @@ int	main(int argc, char *argv[])
 	//push_swap->commands = simplify_rotations(push_swap->commands);
 		
 
-	n_commands = count_lines(push_swap->commands);
+	//n_commands = count_lines(push_swap->commands);
 	//printf("\n\tpush_swap->commands:\n%s\n", push_swap->commands);
-	ft_putstr_fd(push_swap->commands, 0);
-	printf("\n\tsize %d \n\t%d commands\n\tSorted:[%d]\n",push_swap->stack_a->size, n_commands, stack_is_sorted(push_swap->stack_a));
+	ft_putstr_fd(push_swap->commands, 1);
+	//printf("\n\tsize %d \n\t%d commands\n\tSorted:[%d]\n",push_swap->stack_a->size, n_commands, stack_is_sorted(push_swap->stack_a));
 	
 	//print_stacks(push_swap);
-	system("leaks push_swap");
+	//system("leaks push_swap");
 	return (0);
 }
 

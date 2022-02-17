@@ -23,7 +23,6 @@ void	sort_size_two(t_push_swap* push_swap, t_list* stack)
 			exec_command(push_swap, "sa");
 		if (stack == push_swap->stack_b)
 			exec_command(push_swap, "sb");
-		printf("\nSORT\n");
 	}
 	return ;
 }
@@ -73,17 +72,14 @@ t_push_swap	*sort_size_six(t_push_swap* push_swap)
 		exec_command(push_swap, "pb");
 	}
 	sort_size_three(push_swap, push_swap->stack_a);
-	printf("\nBUG\n");
 	
 	if (push_swap->stack_b->size == 3)
 	{
 		sort_size_three(push_swap, push_swap->stack_b);
-		printf("\nBUG\n");
 	}
 	else if (push_swap->stack_b->size == 2)
 	{
 		sort_size_two(push_swap, push_swap->stack_b);
-		printf("\ngood\n");
 	}
 /* 	if (push_swap->stack_b->first->value < push_swap->stack_b->first->next->value)
 		exec_command(push_swap, "pa"); */

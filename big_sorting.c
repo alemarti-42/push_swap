@@ -14,15 +14,11 @@
 
 void	final_sorting(t_push_swap *push_swap)
 {
-	int	chunk_size;
 	int	n_chunks;
-	int	pivot;
 
 	n_chunks = 1;
 	while (n_chunks * n_chunks < push_swap->stack_a->size)
 		n_chunks ++;
-	chunk_size = push_swap->stack_a->size / n_chunks;
-	pivot = chunk_size - 1;
 	//while (push_swap->stack_a->size > 0)
 	//{
 		selection_sort(push_swap, n_chunks);
@@ -30,7 +26,7 @@ void	final_sorting(t_push_swap *push_swap)
 	//}
 	//while (push_swap->stack_b->size > 0)
 	//	exec_pa(push_swap);
-	printf("CHUNKS: %d\n", n_chunks);
+	//printf("CHUNKS: %d\n", n_chunks);
 	return ;
 }
 

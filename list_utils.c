@@ -15,13 +15,13 @@
 // FOR TESTING
 void print_stacks(t_push_swap *push_swap)
 {
-	printf("[A]size:%d:\t", push_swap->stack_a->size);
-	print_list(push_swap->stack_a);
-	printf("[B]size:%d:\t", push_swap->stack_b->size);
-	print_list(push_swap->stack_b);
-	printf("\n");
-}
-//
+	push_swap = push_swap;
+// 	printf("[A]size:%d:\t", push_swap->stack_a->size);
+// 	print_list(push_swap->stack_a);
+// 	printf("[B]size:%d:\t", push_swap->stack_b->size);
+// 	print_list(push_swap->stack_b);
+// 	printf("\n");
+	}
 
 t_list	*new_list(void)
 {
@@ -114,7 +114,6 @@ void print_list(t_list *list)
 
 	if (list->first == NULL)
 	{
-		printf("\t(empty)\n");
 		return ;
 	}
 	
@@ -124,10 +123,11 @@ void print_list(t_list *list)
 	//printf("\nprint_list:\t");
 	while (reader->next != list->first)
 	{
-		printf("\t%d", reader->value);
+		ft_putnbr_fd(reader->value, 2);
+		ft_putstr_fd("\n", 2);
 		reader = reader->next;
 	}
-	printf("\t%d\n", reader->value);
+	ft_putnbr_fd(reader->value, 2);
 	return ;
 }
 
@@ -153,14 +153,14 @@ t_list	*string_tolist(char* str)
 
 	if (check_only_digits(str) == -1)
 	{
-		printf("!ERROR: Caracteres no numéricos encontrados\n");
+		ft_putstr_fd("Caracteres no numéricos\n", 2);
 		free (str);
 		return (NULL);
 	}
 	res = new_list();
 	chopped = ft_split(str, ' ');
 	centinel = chopped;
-	printf("[TEST]STRING: %s\n", str);
+	//printf("[TEST]STRING: %s\n", str);
 
 	free (str);
 	while(*chopped)

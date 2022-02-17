@@ -17,7 +17,7 @@ void	sort_big_stack(t_push_swap *push_swap)
 	int	*sorted_array;
 	//int	i;
 
-	printf("\n[SORT BIG STACK]\n");
+	//printf("\n[SORT BIG STACK]\n");
 	sorted_array = stack_to_array(push_swap->stack_a);
 	//print_int_array(sorted_array, push_swap->stack_a->size);
 	sort_array(sorted_array, push_swap->stack_a->size);
@@ -29,8 +29,8 @@ void	sort_big_stack(t_push_swap *push_swap)
 	sorted_array = stack_to_array(push_swap->stack_a);
 	sort_array(sorted_array, push_swap->stack_a->size);
 	//print_int_array(sorted_array, push_swap->stack_a->size);
-	printf("\nCURATED STACK_A--\n");
-	print_list(push_swap->stack_a);
+	//printf("\nCURATED STACK_A--\n");
+	//print_list(push_swap->stack_a);
 
 
 	//i = 5;
@@ -43,7 +43,7 @@ void	sort_big_stack(t_push_swap *push_swap)
 
 	//check_for_duplicates(sorted_array, push_swap->stack_a->size);
 	final_sorting(push_swap);
-	printf("\n[\\SORT BIG STACK]\n");
+	//printf("\n[\\SORT BIG STACK]\n");
 	return ;
 }
 
@@ -100,10 +100,11 @@ void	print_int_array(int *array, int size)
 	int	i;
 
 	i = 0;
-	printf("\nprint_int_array\t");
+	array = array;
+	//printf("\nprint_int_array\t");
 	while (i < size)
 	{
-		printf("\t%i", array[i]);
+	//	printf("\t%i", array[i]);
 		i++;
 	}
 	return ;
