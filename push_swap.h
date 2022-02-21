@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:11:59 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/21 18:47:29 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/21 19:28:13 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,7 @@ int			smart_allocation(t_push_swap *push_swap, int element);
 void		smart_push(t_push_swap *push_swap, int element);
 void		smart_rotate(t_push_swap *push_swap, t_list *stack, int element);
 int			closest_element(t_push_swap *push_swap, int max_value);
+
+void		sorter(t_push_swap *push_swap);
+
 #endif

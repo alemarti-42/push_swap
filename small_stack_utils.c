@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:18:38 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/21 18:45:22 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/21 19:30:06 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,28 +34,24 @@ void	sort_size_three(t_push_swap *push_swap, t_list *stack)
 		commands = ft_split("sa ra rra", ' ');
 	if (stack == push_swap->stack_b)
 		commands = ft_split("sb rb rrb", ' ');
-	if (stack->size != 3)
-		return ;
 	while (stack_is_sorted(stack) == -1)
-	{
 		if (stack->first->value < stack->first->next->value \
 			&& stack->first->value < stack->first->prev->value)
 			exec_command(push_swap, commands[0]);
-		else if (stack->first->value > stack->first->next->value \
+	else if (stack->first->value > stack->first->next->value \
 			&& stack->first->value > stack->first->prev->value)
-		{
-			if (stack->first->next->value < stack->first->prev->value)
-				exec_command(push_swap, commands[1]);
-			else if (stack->first->next->value > stack->first->prev->value)
-				exec_command(push_swap, commands[0]);
-		}
-		else if (stack->first->value < stack->first->next->value \
-			&& stack->first->value > stack->first->prev->value)
-			exec_command(push_swap, commands[2]);
-		else if (stack->first->value > stack->first->next->value \
-			&& stack->first->value < stack->first->prev->value)
+	{
+		if (stack->first->next->value < stack->first->prev->value)
+			exec_command(push_swap, commands[1]);
+		else if (stack->first->next->value > stack->first->prev->value)
 			exec_command(push_swap, commands[0]);
 	}
+	else if (stack->first->value < stack->first->next->value \
+		&& stack->first->value > stack->first->prev->value)
+		exec_command(push_swap, commands[2]);
+	else if (stack->first->value > stack->first->next->value \
+		&& stack->first->value < stack->first->prev->value)
+		exec_command(push_swap, commands[0]);
 	return ;
 }
 

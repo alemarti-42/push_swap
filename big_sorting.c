@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 17:17:10 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/21 18:38:09 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/21 19:09:51 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,67 +99,4 @@ void	smart_push(t_push_swap *push_swap, int element)
 	smart_allocation(push_swap, element));
 	exec_pb (push_swap);
 	return ;
-}
-
-void	smart_rotate(t_push_swap *push_swap, t_list *stack, int element)
-{
-	int			count_rot;
-	t_list_node	*centinel;
-
-	if (stack->first == NULL)
-		return ;
-	count_rot = 0;
-	centinel = stack->first;
-	while (centinel->next != stack->first && centinel->value != element)
-	{
-		centinel = centinel->next;
-		count_rot ++;
-	}
-	if (count_rot > stack->size / 2)
-		count_rot = -1;
-	while (stack->first->value != element)
-	{
-		if (count_rot > 0)
-			if (stack == push_swap->stack_a)
-				exec_ra(push_swap);
-		else
-			exec_rb(push_swap);
-		else
-			if (stack == push_swap->stack_a)
-				exec_rra(push_swap);
-		else
-			exec_rrb(push_swap);
-	}
-}
-
-int	closest_element(t_push_swap *push_swap, int max_value)
-{
-	int			count_rot;
-	int			count_rev;
-	t_list_node	*centinel;
-	int			element;
-
-	centinel = push_swap->stack_a->first;
-	count_rot = 0;
-	count_rev = 0;
-	element = 0;
-	if (push_swap->stack_a->size == 0)
-		return (-1);
-	while (centinel->value > max_value && count_rot <= push_swap->stack_a->size)
-	{
-		centinel = centinel->next;
-		count_rot ++;
-	}
-	if (count_rot > push_swap->stack_a->size)
-		return (-1);
-	element = centinel->value;
-	centinel = push_swap->stack_a->first;
-	while (centinel->value > max_value)
-	{
-		centinel = centinel->prev;
-		count_rev ++;
-	}
-	if (count_rot > count_rev)
-		element = centinel->value;
-	return (element);
 }

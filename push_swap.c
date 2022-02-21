@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:12:03 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/21 18:42:47 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/21 19:27:57 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	main(int argc, char *argv[])
 	push_swap->stack_a = string_tolist(join_args(argc, argv));
 	if (push_swap->stack_a == NULL)
 	{
-		ft_putstr_fd("Fallo inicializacion\n", 2);
 		ft_putstr_fd("Error\n", 1);
 		return (-1);
 	}
@@ -82,23 +81,12 @@ int	main(int argc, char *argv[])
 	if (check_for_duplicates(sorted_array, push_swap->stack_a->size) == -1 || \
 	check_all_int(push_swap->stack_a) == -1)
 	{
-		ft_putstr_fd("Numeros no válidos\n", 2);
 		ft_putstr_fd("Error\n", 2);
-		free (sorted_array);
 		return (-1);
 	}
 	free (sorted_array);
 	if (stack_is_sorted(push_swap->stack_a) == -1)
-	{
-		if (push_swap->stack_a->size == 2)
-			sort_size_two(push_swap, push_swap->stack_a);
-		else if (push_swap->stack_a->size == 3)
-			sort_size_three(push_swap, push_swap->stack_a);
-		else if (push_swap->stack_a->size <= 6)
-			sort_size_six(push_swap);
-		else
-			sort_big_stack(push_swap);
-	}
+		sorter(push_swap);
 	ft_putstr_fd(push_swap->commands, 1);
 	return (0);
 }

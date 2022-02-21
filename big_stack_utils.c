@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:18:38 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/21 18:39:54 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/21 19:09:38 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,37 +99,4 @@ long	*stack_to_array(t_list *stack)
 	}
 	res[i] = centinel->value;
 	return (res);
-}
-
-static void	swap_mem(long *xp, long *yp)
-{
-	long	tmp;
-
-	tmp = *xp;
-	*xp = *yp;
-	*yp = tmp;
-}
-
-void	sort_array(long *arr, int size)
-{
-	long	i;
-	long	j;
-	long	min_idx;
-
-	i = 0;
-	j = 0;
-	while (i < size)
-	{
-		min_idx = i;
-		j = i + 1;
-		while (j < size)
-		{
-			if (arr[j] < arr[min_idx])
-				min_idx = j;
-			j++;
-		}
-		swap_mem(&arr[min_idx], &arr[i]);
-		i++;
-	}
-	return ;
 }
