@@ -6,7 +6,7 @@
 #    By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 15:10:14 by alemarti          #+#    #+#              #
-#    Updated: 2022/02/21 19:09:13 by alemarti         ###   ########.fr        #
+#    Updated: 2022/02/21 19:37:42 by alemarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,8 +52,8 @@ fclean:		clean
 re:			fclean all
 
 test:		test.out
-test.out:	${OBJS}
-			${CC} ${CFLAGS} ${DBFLAGS} ${OBJS} ${PSLIB} -o test.out 
+test.out:	${OBJS} ${PSLIB}
+			${CC} ${CFLAGS} ${DBFLAGS} ${OBJS} ${PSLIB} ${LIBFT} -o test.out 
 
 retest:		fclean test
 

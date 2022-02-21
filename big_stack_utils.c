@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:18:38 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/21 19:09:38 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/21 19:52:09 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ int	value_to_index(int value, t_list *stack)
 	while (centinel->next != stack->first)
 	{
 		if (centinel->value == value)
-		{
 			return (i);
-		}
 		centinel = centinel->next;
 		i++;
 	}

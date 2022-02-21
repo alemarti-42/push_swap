@@ -6,13 +6,13 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:04:49 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/21 19:25:54 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/21 20:45:19 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
 
-void	smart_rotate(t_push_swap *push_swap, t_list *stack, int element)
+void	smart_rotate(t_push_swap *push_swap, t_list *stack, long element)
 {
 	int			count_rot;
 	t_list_node	*centinel;
@@ -21,27 +21,34 @@ void	smart_rotate(t_push_swap *push_swap, t_list *stack, int element)
 		return ;
 	count_rot = 0;
 	centinel = stack->first;
-	while (centinel->next != stack->first && centinel->value != element && \
-	count_rot++)
+	while (centinel->next != stack->first && centinel->value != element)
+	{
 		centinel = centinel->next;
+		count_rot++;
+	}
 	if (count_rot > stack->size / 2)
 		count_rot = -1;
+	printf("countrot: %d\n", count_rot);
 	while (stack->first->value != element)
 	{
 		if (count_rot > 0)
+		{
 			if (stack == push_swap->stack_a)
 				exec_ra(push_swap);
+			else
+				exec_rb(push_swap);
+		}
 		else
-			exec_rb(push_swap);
-		else
+		{
 			if (stack == push_swap->stack_a)
 				exec_rra(push_swap);
-		else
-			exec_rrb(push_swap);
+			else
+				exec_rrb(push_swap);
+		}
 	}
 }
 
-int	closest_element(t_push_swap *push_swap, int max_value)
+long	closest_element(t_push_swap *push_swap, long max_value)
 {
 	int			count_rot;
 	int			count_rev;
@@ -56,7 +63,10 @@ int	closest_element(t_push_swap *push_swap, int max_value)
 		return (-1);
 	while (centinel->value > max_value && count_rot <= push_swap->stack_a->size \
 	&& count_rot++)
+	{
+		printf("count_rot: %d\n", count_rot);
 		centinel = centinel->next;
+	}
 	if (count_rot > push_swap->stack_a->size)
 		return (-1);
 	element = centinel->value;
@@ -65,6 +75,7 @@ int	closest_element(t_push_swap *push_swap, int max_value)
 		centinel = centinel->prev;
 	if (count_rot > count_rev)
 		element = centinel->value;
+	//printf("closest %d\n", element);
 	return (element);
 }
 

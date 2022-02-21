@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 17:17:10 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/21 19:09:51 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/21 20:35:59 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void	selection_sort(t_push_swap *push_swap, int n_chunks)
 	return ;
 }
 
-int	smart_allocation(t_push_swap *push_swap, int element)
+long	smart_allocation(t_push_swap *push_swap, long element)
 {
 	t_list_node	*centinel;
-	int			max_value;
+	long			max_value;
 	int			i;
 
 	if (push_swap->stack_b->size == 0)
@@ -69,10 +69,11 @@ int	smart_allocation(t_push_swap *push_swap, int element)
 		centinel = centinel->next;
 		i++;
 	}
+	printf("\tmaxvalue: %ld\n", max_value);
 	return (max_value);
 }
 
-int	get_biggest_node(t_list *stack)
+long	get_biggest_node(t_list *stack)
 {
 	int			biggest;
 	t_list_node	*centinel;
@@ -92,11 +93,10 @@ int	get_biggest_node(t_list *stack)
 	return (biggest);
 }
 
-void	smart_push(t_push_swap *push_swap, int element)
+void	smart_push(t_push_swap *push_swap, long element)
 {
 	smart_rotate(push_swap, push_swap->stack_a, element);
-	smart_rotate(push_swap, push_swap->stack_b, \
-	smart_allocation(push_swap, element));
+	smart_rotate(push_swap, push_swap->stack_b, smart_allocation(push_swap, element));
 	exec_pb (push_swap);
 	return ;
 }

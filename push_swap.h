@@ -6,14 +6,14 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:11:59 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/21 19:28:13 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/21 20:12:24 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-//#include <stdio.h>
+#include <stdio.h>
 
 # include<stddef.h>
 # include<stdlib.h>
@@ -44,11 +44,11 @@ void		sort_array(long arr[], int n);
 
 //big_sorting.c
 void		final_sorting(t_push_swap *push_swap);
-void		selection_sort(t_push_swap *push_swap, int pivot);
-int			smart_allocation(t_push_swap *push_swap, int element);
-void		smart_push(t_push_swap *push_swap, int element);
-void		smart_rotate(t_push_swap *push_swap, t_list *stack, int element);
-int			closest_element(t_push_swap *push_swap, int max_value);
+void		selection_sort(t_push_swap *push_swap, int n_chunks);
+long		smart_allocation(t_push_swap *push_swap, long element);
+void		smart_push(t_push_swap *push_swap, long element);
+void		smart_rotate(t_push_swap *push_swap, t_list *stack, long element);
+long		closest_element(t_push_swap *push_swap, long max_value);
 
 void		sorter(t_push_swap *push_swap);
 

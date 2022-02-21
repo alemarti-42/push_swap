@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:12:03 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/21 19:27:57 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/21 20:20:04 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int	main(int argc, char *argv[])
 		ft_putstr_fd("Error\n", 2);
 		return (-1);
 	}
-	free (sorted_array);
 	if (stack_is_sorted(push_swap->stack_a) == -1)
 		sorter(push_swap);
 	ft_putstr_fd(push_swap->commands, 1);
