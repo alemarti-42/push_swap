@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 18:16:20 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/22 16:11:47 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/22 18:13:44 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ t_list	*string_tolist(char *str)
 
 	if (check_only_digits(str) == -1)
 	{
-		ft_putstr_fd("Caracteres no numéricos\n", 2);
 		free (str);
 		return (NULL);
 	}
