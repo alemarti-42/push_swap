@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 17:17:10 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/21 18:38:09 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/22 17:05:46 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,29 +49,6 @@ void	selection_sort(t_push_swap *push_swap, int n_chunks)
 	return ;
 }
 
-int	smart_allocation(t_push_swap *push_swap, int element)
-{
-	t_list_node	*centinel;
-	int			max_value;
-	int			i;
-
-	if (push_swap->stack_b->size == 0)
-		return (0);
-	i = 0;
-	centinel = push_swap->stack_b->first;
-	max_value = push_swap->stack_b->first->value;
-	while (i < push_swap->stack_b->size)
-	{
-		if (centinel->prev->value > element && centinel->value < element)
-			return (centinel->value);
-		if (centinel->value > max_value)
-			max_value = centinel->value;
-		centinel = centinel->next;
-		i++;
-	}
-	return (max_value);
-}
-
 int	get_biggest_node(t_list *stack)
 {
 	int			biggest;
@@ -92,57 +69,14 @@ int	get_biggest_node(t_list *stack)
 	return (biggest);
 }
 
-void	smart_push(t_push_swap *push_swap, int element)
-{
-	smart_rotate(push_swap, push_swap->stack_a, element);
-	smart_rotate(push_swap, push_swap->stack_b, \
-	smart_allocation(push_swap, element));
-	exec_pb (push_swap);
-	return ;
-}
-
-void	smart_rotate(t_push_swap *push_swap, t_list *stack, int element)
-{
-	int			count_rot;
-	t_list_node	*centinel;
-
-	if (stack->first == NULL)
-		return ;
-	count_rot = 0;
-	centinel = stack->first;
-	while (centinel->next != stack->first && centinel->value != element)
-	{
-		centinel = centinel->next;
-		count_rot ++;
-	}
-	if (count_rot > stack->size / 2)
-		count_rot = -1;
-	while (stack->first->value != element)
-	{
-		if (count_rot > 0)
-			if (stack == push_swap->stack_a)
-				exec_ra(push_swap);
-		else
-			exec_rb(push_swap);
-		else
-			if (stack == push_swap->stack_a)
-				exec_rra(push_swap);
-		else
-			exec_rrb(push_swap);
-	}
-}
-
 int	closest_element(t_push_swap *push_swap, int max_value)
 {
 	int			count_rot;
-	int			count_rev;
 	t_list_node	*centinel;
 	int			element;
 
 	centinel = push_swap->stack_a->first;
 	count_rot = 0;
-	count_rev = 0;
-	element = 0;
 	if (push_swap->stack_a->size == 0)
 		return (-1);
 	while (centinel->value > max_value && count_rot <= push_swap->stack_a->size)
@@ -157,9 +91,24 @@ int	closest_element(t_push_swap *push_swap, int max_value)
 	while (centinel->value > max_value)
 	{
 		centinel = centinel->prev;
-		count_rev ++;
+		count_rot--;
 	}
-	if (count_rot > count_rev)
+	if (count_rot > 0)
 		element = centinel->value;
 	return (element);
+}
+
+void	sort_big_stack(t_push_swap *push_swap)
+{
+	long	*sorted_array;
+
+	sorted_array = stack_to_array(push_swap->stack_a);
+	sort_array(sorted_array, push_swap->stack_a->size);
+	stack_to_indexes(push_swap->stack_a, sorted_array);
+	free (sorted_array);
+	sorted_array = stack_to_array(push_swap->stack_a);
+	sort_array(sorted_array, push_swap->stack_a->size);
+	final_sorting(push_swap);
+	free(sorted_array);
+	return ;
 }

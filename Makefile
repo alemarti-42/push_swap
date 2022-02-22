@@ -6,14 +6,15 @@
 #    By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 15:10:14 by alemarti          #+#    #+#              #
-#    Updated: 2022/02/21 16:48:05 by alemarti         ###   ########.fr        #
+#    Updated: 2022/02/22 17:23:16 by alemarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		=	push_swap.c					\
 				small_stack_utils.c			\
 				big_stack_utils.c			\
-				big_sorting.c
+				big_sorting.c				\
+				more_utils.c
 
 
 OBJS		= ${SRCS:.c=.o}
@@ -52,7 +53,7 @@ re:			fclean all
 
 test:		test.out
 test.out:	${OBJS}
-			${CC} ${CFLAGS} ${DBFLAGS} ${OBJS} ${PSLIB} -o test.out 
+			${CC} ${CFLAGS} ${DBFLAGS} ${OBJS} ${PSLIB} ${LIBFT} -o test.out 
 
 retest:		fclean test
 

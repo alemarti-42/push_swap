@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 18:17:01 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/21 18:30:05 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/22 16:24:30 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,22 @@ t_push_swap	*init_push_swap(void)
 	return (new_push_swap);
 }
 
-int	exec_phrase(t_push_swap *push_swap, char *phrase)
-{
-	char	**commands;
-	char	*buf;
+// int	exec_phrase(t_push_swap *push_swap, char *phrase)
+// {
+// 	char	**commands;
+// 	char	*buf;
 
-	buf = ft_strdup("\0\0\0\0\0");
-	commands = ft_split(phrase, ' ');
-	while (read(0, buf, 3))
-	{
-		add_command(push_swap, " ");
-		exec_command(push_swap, buf);
-		print_stacks(push_swap);
-		commands++;
-	}
-	return (0);
-}
+// 	buf = ft_strdup("\0\0\0\0\0");
+// 	commands = ft_split(phrase, ' ');
+// 	while (read(0, buf, 3))
+// 	{
+// 		add_command(push_swap, " ");
+// 		exec_command(push_swap, buf);
+// 		print_stacks(push_swap);
+// 		commands++;
+// 	}
+// 	return (0);
+// }
 
 static int	exec_command_aux(t_push_swap *push_swap, char *command)
 {

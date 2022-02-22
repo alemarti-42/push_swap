@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 18:16:20 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/21 18:21:49 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/22 16:11:47 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ void	print_list(t_list *list)
 	while (reader->next != list->first)
 	{
 		ft_putnbr_fd(reader->value, 2);
-		ft_putstr_fd("\n", 2);
+		ft_putstr_fd("\t", 2);
 		reader = reader->next;
 	}
 	ft_putnbr_fd(reader->value, 2);
+	ft_putstr_fd("\n", 2);
 	return ;
 }
 

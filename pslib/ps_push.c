@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 18:16:48 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/21 18:23:45 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/22 16:52:31 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,13 @@ int	exec_pb(t_push_swap *push_swap)
 		return (-1);
 	add_command(push_swap, "pb\n");
 	return (0);
+}
+
+void	smart_push(t_push_swap *push_swap, int element)
+{
+	smart_rotate(push_swap, push_swap->stack_a, element);
+	smart_rotate(push_swap, push_swap->stack_b, \
+	smart_allocation(push_swap, element));
+	exec_pb (push_swap);
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:18:38 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/21 18:45:22 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/22 17:22:05 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	sort_size_two(t_push_swap *push_swap, t_list *stack)
 	return ;
 }
 
-void	sort_size_three(t_push_swap *push_swap, t_list *stack)
+static char	**init_commands(t_push_swap *push_swap, t_list *stack)
 {
 	char	**commands;
 
@@ -34,6 +34,14 @@ void	sort_size_three(t_push_swap *push_swap, t_list *stack)
 		commands = ft_split("sa ra rra", ' ');
 	if (stack == push_swap->stack_b)
 		commands = ft_split("sb rb rrb", ' ');
+	return (commands);
+}
+
+void	sort_size_three(t_push_swap *push_swap, t_list *stack)
+{
+	char	**commands;
+
+	commands = init_commands(push_swap, stack);
 	if (stack->size != 3)
 		return ;
 	while (stack_is_sorted(stack) == -1)
@@ -56,7 +64,6 @@ void	sort_size_three(t_push_swap *push_swap, t_list *stack)
 			&& stack->first->value < stack->first->prev->value)
 			exec_command(push_swap, commands[0]);
 	}
-	return ;
 }
 
 t_push_swap	*sort_size_six(t_push_swap *push_swap)
@@ -71,7 +78,6 @@ t_push_swap	*sort_size_six(t_push_swap *push_swap)
 	else if (push_swap->stack_b->size == 2)
 		sort_size_two(push_swap, push_swap->stack_b);
 	merge_sorted_stacks(push_swap);
-	print_stacks(push_swap);
 	return (push_swap);
 }
 

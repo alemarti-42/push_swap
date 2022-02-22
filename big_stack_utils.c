@@ -6,24 +6,11 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:18:38 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/21 18:39:54 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/22 17:05:53 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	sort_big_stack(t_push_swap *push_swap)
-{
-	long	*sorted_array;
-
-	sorted_array = stack_to_array(push_swap->stack_a);
-	sort_array(sorted_array, push_swap->stack_a->size);
-	stack_to_indexes(push_swap->stack_a, sorted_array);
-	sorted_array = stack_to_array(push_swap->stack_a);
-	sort_array(sorted_array, push_swap->stack_a->size);
-	final_sorting(push_swap);
-	return ;
-}
 
 void	stack_to_indexes(t_list *stack, long *sorted_array)
 {
@@ -67,19 +54,6 @@ int	value_to_index(int value, t_list *stack)
 		return (i);
 	}
 	return (-1);
-}
-
-void	print_int_array(int *array, int size)
-{
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		ft_putnbr_fd(array[i], 1);
-		i++;
-	}
-	return ;
 }
 
 long	*stack_to_array(t_list *stack)
