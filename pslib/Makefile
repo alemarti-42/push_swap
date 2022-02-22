@@ -29,11 +29,10 @@ ${LIBFT}:
 
 clean:	
 			@${RM} ${OBJS}
-			@make -C ./libft/ clean
+			@make -C ./libft/ fclean
 
 fclean:		clean
 			@${RM} ${NAME}
-			@make -C ./libft/ fclean
 
 re:			fclean all
 

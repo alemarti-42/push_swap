@@ -6,7 +6,7 @@
 #    By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 15:10:14 by alemarti          #+#    #+#              #
-#    Updated: 2022/02/22 17:23:16 by alemarti         ###   ########.fr        #
+#    Updated: 2022/02/22 18:44:34 by alemarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,19 +42,12 @@ ${PSLIB}:
 
 clean:
 			@${RM} ${OBJS}
-			@make -C ./pslib/ clean
+			@make -C ./pslib/ fclean
 
 
 fclean:		clean
 			@${RM} ${NAME}
-			@make -C ./pslib/ fclean
 
 re:			fclean all
-
-test:		test.out
-test.out:	${OBJS}
-			${CC} ${CFLAGS} ${DBFLAGS} ${OBJS} ${PSLIB} ${LIBFT} -o test.out 
-
-retest:		fclean test
 
 PHONY:		all bonus clean fclean re
