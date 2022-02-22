@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:12:03 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/22 17:14:42 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/22 18:05:24 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char *argv[])
 	t_push_swap	*push_swap;
 	long		*sorted_array;
 
-	if (argc <= 2)
+	if (argc < 2)
 		return (0);
 	push_swap = init_push_swap();
 	push_swap->stack_a = string_tolist(join_args(argc, argv));
