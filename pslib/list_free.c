@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:08:56 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/23 17:29:45 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/23 19:11:21 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	free_push_swap(t_push_swap *push_swap)
 		return ;
 	if (push_swap->stack_a)
 		free_stack(push_swap->stack_a);
-	if (push_swap->stack_a)
+	if (push_swap->stack_b)
 		free_stack(push_swap->stack_b);
 	free(push_swap->commands);
 	free (push_swap);
