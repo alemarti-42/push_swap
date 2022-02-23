@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:12:03 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/22 18:05:24 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/23 17:30:13 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,24 @@ int	main(int argc, char *argv[])
 {
 	t_push_swap	*push_swap;
 	long		*sorted_array;
+	char		*args;
 
 	if (argc < 2)
 		return (0);
-	push_swap = init_push_swap();
-	push_swap->stack_a = string_tolist(join_args(argc, argv));
+	args = join_args(argc, argv);
+	push_swap = init_push_swap(args);
 	if (push_swap->stack_a == NULL)
-	{
-		ft_putstr_fd("Error\n", 1);
-		return (-1);
-	}
+		return (return_error(push_swap));
 	sorted_array = stack_to_array(push_swap->stack_a);
 	sort_array(sorted_array, push_swap->stack_a->size);
 	if (check_for_duplicates(sorted_array, push_swap->stack_a->size) == -1 || \
 	check_all_int(push_swap->stack_a) == -1)
-	{
-		ft_putstr_fd("Error\n", 2);
-		return (-1);
-	}
+		return (return_error(push_swap));
 	free (sorted_array);
 	if (stack_is_sorted(push_swap->stack_a) == -1)
 		sorter(push_swap);
 	ft_putstr_fd(push_swap->commands, 1);
+	free_push_swap(push_swap);
 	return (0);
 }
 

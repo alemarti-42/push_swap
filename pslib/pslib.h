@@ -6,20 +6,14 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:11:59 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/22 16:32:26 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/23 17:43:32 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PSLIB_H
 # define PSLIB_H
 
-//#include <stdio.h>
-
-# include<stddef.h>
-# include<stdlib.h>
-# include<unistd.h>
-
-# include"./libft/libft.h"
+# include"../libft/libft.h"
 
 typedef struct s_push_swap
 {
@@ -59,6 +53,10 @@ t_list		*rotate(t_list *list);
 t_list		*rev_rotate(t_list *list);
 void		queue_node(t_list_node *new_node, t_list *list);
 
+//list_free.c
+void		free_stack(t_list *stack);
+void		free_push_swap(t_push_swap *push_swap);
+
 //ps_push.c
 int			exec_push(t_list *stack_src, t_list *stack_dst);
 int			exec_pa(t_push_swap *push_swap);
@@ -84,7 +82,7 @@ int			exec_sb(t_push_swap *push_swap);
 int			exec_ss(t_push_swap *push_swap);
 
 //push_swap_interpreter.c
-t_push_swap	*init_push_swap(void);
+t_push_swap	*init_push_swap(char *str);
 int			exec_command(t_push_swap *push_swap, char *command);
 void		add_command(t_push_swap *push_swap, char *cmd);
 #endif

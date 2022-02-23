@@ -6,7 +6,7 @@
 #    By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 15:10:14 by alemarti          #+#    #+#              #
-#    Updated: 2022/02/22 18:44:34 by alemarti         ###   ########.fr        #
+#    Updated: 2022/02/23 16:44:24 by alemarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,29 +20,30 @@ SRCS		=	push_swap.c					\
 OBJS		= ${SRCS:.c=.o}
 
 PSLIB		= ./pslib/pslib.a
-LIBFT		= ./pslib/libft/libft.a
+LIBFT		= ./libft/libft.a
 
 NAME		= push_swap
 
 CC			= gcc
 RM			= rm -f
 CFLAGS		= -Wall -Werror -Wextra
-DBFLAGS		= -g3 -fsanitize=address
 
 
 all:		${NAME}
 
-bonus:		all
-
-${NAME}:	${OBJS} ${PSLIB}
+${NAME}:	${OBJS} ${LIBFT} ${PSLIB} 
 			${CC} ${CFLAGS} ${OBJS} ${PSLIB} ${LIBFT} -o ${NAME} 
 
 ${PSLIB}:
 			make -C ./pslib/ all
 
+${LIBFT}:
+			make -C ./libft/ all
+
 clean:
 			@${RM} ${OBJS}
 			@make -C ./pslib/ fclean
+			@make -C ./libft/ fclean
 
 
 fclean:		clean
@@ -50,4 +51,4 @@ fclean:		clean
 
 re:			fclean all
 
-PHONY:		all bonus clean fclean re
+PHONY:		all clean fclean re

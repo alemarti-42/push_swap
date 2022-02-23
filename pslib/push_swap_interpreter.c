@@ -6,19 +6,20 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 18:17:01 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/22 16:24:30 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/23 17:27:40 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pslib.h"
 
-t_push_swap	*init_push_swap(void)
+t_push_swap	*init_push_swap(char *str)
 {
 	t_push_swap	*new_push_swap;
 
 	new_push_swap = malloc(sizeof(t_push_swap));
 	new_push_swap->commands = malloc (1);
 	*new_push_swap->commands = 0;
+	new_push_swap->stack_a = string_tolist(str);
 	new_push_swap->stack_b = new_list();
 	return (new_push_swap);
 }

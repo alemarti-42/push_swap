@@ -6,21 +6,15 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:11:59 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/22 17:14:32 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/02/23 17:43:29 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-//#include <stdio.h>
-
-# include<stddef.h>
-# include<stdlib.h>
-# include<unistd.h>
-
 # include "./pslib/pslib.h"
-# include "./pslib/libft/libft.h"
+# include "./libft/libft.h"
 
 //push_swap.c
 char		*join_args(int argc, char *argv[]);
@@ -32,7 +26,10 @@ void		sort_size_two(t_push_swap *push_swap, t_list *stack);
 void		sort_size_three(t_push_swap *push_swap, t_list *stack);
 t_push_swap	*sort_size_six(t_push_swap *push_swap);
 t_push_swap	*merge_sorted_stacks(t_push_swap *push_swap);
+
+//more_utils.c
 int			count_lines(char *str);
+int			return_error(t_push_swap *push_swap);
 
 //big_stack_utils.c
 void		stack_to_indexes(t_list *stack, long *sorted_array);
