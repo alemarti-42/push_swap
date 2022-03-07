@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:18:38 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/22 17:22:05 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/03/07 13:26:13 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void	sort_size_three(t_push_swap *push_swap, t_list *stack)
 	char	**commands;
 
 	commands = init_commands(push_swap, stack);
-	if (stack->size != 3)
-		return ;
 	while (stack_is_sorted(stack) == -1)
 	{
 		if (stack->first->value < stack->first->next->value \
@@ -64,6 +62,7 @@ void	sort_size_three(t_push_swap *push_swap, t_list *stack)
 			&& stack->first->value < stack->first->prev->value)
 			exec_command(push_swap, commands[0]);
 	}
+	free_split(commands);
 }
 
 t_push_swap	*sort_size_six(t_push_swap *push_swap)

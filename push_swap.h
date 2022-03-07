@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:11:59 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/23 17:43:29 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/03/07 13:31:53 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_push_swap	*merge_sorted_stacks(t_push_swap *push_swap);
 //more_utils.c
 int			count_lines(char *str);
 int			return_error(t_push_swap *push_swap);
+void		free_split(char **str);
 
 //big_stack_utils.c
 void		stack_to_indexes(t_list *stack, long *sorted_array);

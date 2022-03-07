@@ -6,7 +6,7 @@
 /*   By: alemarti <alemarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:12:03 by alemarti          #+#    #+#             */
-/*   Updated: 2022/02/23 17:30:13 by alemarti         ###   ########.fr       */
+/*   Updated: 2022/03/07 13:57:40 by alemarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ int	main(int argc, char *argv[])
 	sort_array(sorted_array, push_swap->stack_a->size);
 	if (check_for_duplicates(sorted_array, push_swap->stack_a->size) == -1 || \
 	check_all_int(push_swap->stack_a) == -1)
+	{
+		free (sorted_array);
 		return (return_error(push_swap));
+	}
 	free (sorted_array);
 	if (stack_is_sorted(push_swap->stack_a) == -1)
 		sorter(push_swap);
